@@ -2,9 +2,9 @@ import { useLocale } from 'next-intl';
 import { Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import { Header } from '@/components';
+import { Footer, Header } from '@/components';
 
-import "./../globals.css";
+import './../globals.css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,7 +14,7 @@ export const metadata = {
 const inter = Montserrat({
   subsets: ['latin'],
   display: 'swap',
-})
+});
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: any }) {
   const locale = useLocale();
   if (params.locale !== locale) {
@@ -22,9 +22,10 @@ export default function RootLayout({ children, params }: { children: React.React
   }
   return (
     <html lang={locale} className={inter.className}>
-      <body className={'m-auto container'}>
-        {/* <Header /> */}
-        {children}
+      <body className={' container m-auto'}>
+        <Header />
+        <div className="h-screen">{children}</div>
+        <Footer />
       </body>
     </html>
   );

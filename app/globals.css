@@ -19,3 +19,9 @@
     /* animation-timing-function: ease-in-out; */
   }
   
+  .slider > div {
+    border-top-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-top-right-radius: unset;
+    border-bottom-left-radius: unset;
+  }

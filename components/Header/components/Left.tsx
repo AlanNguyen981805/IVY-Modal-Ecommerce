@@ -28,7 +28,7 @@ const HeaderLeft = () => {
       ))}
       {isShowChildCate && (
         <div
-          className=" absolute w-full bg-white px-[23px] py-6  top-14 animate-slide-up border border-[#E7E8E9] flex "
+          className=" absolute z-20 w-full bg-white px-[23px] py-6  top-14 animate-slide-up border border-[#E7E8E9] flex "
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

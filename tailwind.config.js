@@ -4,11 +4,13 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./public/**/*.html",
+    "./node_modules/flowbite-react/**/*.js"
   ],
   theme: {
     extend: {
       container: {
-        'max-width': '1800px',
+        'max-width': '1920px',
       },
       textColor: {
         primary: '#57585A',
@@ -24,7 +26,7 @@ module.exports = {
         lg: '1380px',
         xl: '1460px',
         '2xl': '1660px',
-        '3xl': '1800px',
+        '3xl': '1920px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -32,5 +34,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 };
