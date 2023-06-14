@@ -6,7 +6,7 @@ const withNextIntl = require('next-intl/plugin')(
 module.exports = withNextIntl({
   // Other Next.js configuration ...
   images: {
-    domains: ['pubcdn.ivymoda.com'],
+    domains: ['pubcdn.ivymoda.com', 'images.dmca.com', 'pubcdn.ivymoda.com'],
   },
   experimental: { appDir: true },
 });

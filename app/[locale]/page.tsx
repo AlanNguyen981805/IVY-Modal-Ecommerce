@@ -1,7 +1,6 @@
-import { Header } from '@/components';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import Link from 'next/link';
+
+import { Footer, Header } from '@/components';
 
 interface IProps {
   children: React.ReactNode;
@@ -21,7 +20,8 @@ export default function Home({ children }: IProps) {
       </Link>
       <br /> */}
       <Header />
-      {children}
+      <div className='h-screen'>{children}</div>
+      <Footer />
     </main>
   );
 }

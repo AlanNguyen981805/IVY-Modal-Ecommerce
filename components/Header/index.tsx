@@ -7,7 +7,7 @@ const Header = () => {
   const t = useTranslations('Header');
 
   return (
-    <div className="flex px-4 h-[80px]  flex items-center w-full  border-b relative">
+    <div className="h-[80px]  flex items-center w-full  border-b relative">
       <div className="w-3/6">
         <HeaderLeft />
       </div>

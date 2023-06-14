@@ -275,3 +275,5 @@ export const listTopSeach = [
 ]
 
 export const Logo = 'https://pubcdn.ivymoda.com/ivy2/images/logo.png';
+export const LogoDCMA = 'https://images.dmca.com/Badges/dmca_protected_16_120.png?ID=0cfdeac4-6e7f-4fca-941f-57a0a0962777';
+export const LogoBoCongThuong = 'https://pubcdn.ivymoda.com/ivy2/images/img-congthuong.png';

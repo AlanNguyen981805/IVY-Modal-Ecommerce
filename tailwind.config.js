@@ -10,12 +10,20 @@ module.exports = {
       container: {
         'max-width': '1800px',
       },
+      textColor: {
+        primary: '#57585A',
+        primaryDark: '#221F20',
+      },
+      backgroundColor: {
+        primary: '#57585A',
+        primaryDark: '#221F20',
+      },
       screens: {
         sm: '992px',
         md: '1200px',
         lg: '1380px',
         xl: '1460px',
-        '2xl': '1600px',
+        '2xl': '1660px',
         '3xl': '1800px',
       },
       backgroundImage: {
