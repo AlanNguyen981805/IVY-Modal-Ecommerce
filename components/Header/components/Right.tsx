@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import icons from '@/utils/icons';
 
-import { listTopSeach } from '../data';
+import { listTopSeach } from '../data.header';
 
 const {
   CiSearch,

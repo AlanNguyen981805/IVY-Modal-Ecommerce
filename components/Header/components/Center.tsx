@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 
-import { Logo } from '../data';
+import { Logo } from '../data.header';
 
 const HeaderCenter = () => {
   return (

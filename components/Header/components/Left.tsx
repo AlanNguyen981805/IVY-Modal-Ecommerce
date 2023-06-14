@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { categories } from '../data';
+import { categories } from '../data.header';
 
 const HeaderLeft = () => {
   const [isShowChildCate, setIsShowChildCate] = useState(false);
