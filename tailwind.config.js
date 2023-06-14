@@ -7,12 +7,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      container: {
+        'max-width': '1800px',
+      },
+      screens: {
+        sm: '992px',
+        md: '1200px',
+        lg: '1380px',
+        xl: '1460px',
+        '2xl': '1600px',
+        '3xl': '1800px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
   plugins: [],
-}
+};
