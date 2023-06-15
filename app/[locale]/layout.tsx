@@ -24,7 +24,7 @@ export default function RootLayout({ children, params }: { children: React.React
     <html lang={locale} className={inter.className}>
       <body className={' container m-auto'}>
         <Header />
-        <div className="h-screen">{children}</div>
+        <div className="mt-24">{children}</div>
         <Footer />
       </body>
     </html>
