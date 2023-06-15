@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FooterCenter, FooterLeft, FooterRight } from './components';
 import { dataFooter } from './data.footer';
 

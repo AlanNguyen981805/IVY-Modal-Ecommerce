@@ -15,8 +15,8 @@ const Right = () => {
         </div>
       </div>
       <div>
-        <p className='pt-8 pb-6 text-2xl font-semibold'>Download App</p>
-        <div className='flex gap-4'>
+        <p className="pt-8 pb-6 text-2xl font-semibold">Download App</p>
+        <div className="flex gap-4">
           {dataFooter.footerRight.apps.map((item, index) => {
             return (
               <>

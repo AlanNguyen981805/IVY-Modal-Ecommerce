@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { categories } from '../data.header';
 
 const HeaderLeft = () => {
