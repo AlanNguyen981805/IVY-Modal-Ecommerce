@@ -1,14 +1,23 @@
-import { CiSearch } from 'react-icons/ci';
-import { BsCart4, BsHeadphones, BsChatDots, BsCheckLg, BsArrowRight, BsArrowLeft } from 'react-icons/bs';
-import { AiOutlineUser, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { CiSearch, CiHeart } from 'react-icons/ci';
+import { BsCart4, BsHeadphones, BsChatDots, BsCheckLg, BsArrowRight, BsArrowLeft, BsPlus } from 'react-icons/bs';
+import { AiOutlineUser, AiOutlineHeart, AiFillStar } from 'react-icons/ai';
 import { HiOutlineShoppingBag, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
-import { BiPhoneCall } from 'react-icons/bi';
+import { BiPhoneCall, BiMinus } from 'react-icons/bi';
+import { MdHorizontalRule } from 'react-icons/md';
 import { FaPaw } from 'react-icons/fa';
+import { RiRulerLine } from 'react-icons/ri';
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { IoIosArrowRoundForward, IoIosArrowRoundBack } from 'react-icons/io';
 import { TfiReload, TfiEmail } from 'react-icons/tfi';
 
 const icons = {
+  SlArrowUp,
+  SlArrowDown,
+  BiMinus,
+  BsPlus,
+  MdHorizontalRule,
   HiArrowLeft,
+  RiRulerLine,
   HiArrowRight,
   CiSearch,
   BsHeadphones,
@@ -22,11 +31,12 @@ const icons = {
   FaPaw,
   BsCheckLg,
   AiOutlineHeart,
-  AiFillHeart,
+  CiHeart,
   BsArrowRight,
   BsArrowLeft,
   IoIosArrowRoundForward,
   IoIosArrowRoundBack,
+  AiFillStar,
 };
 
 export default icons;
