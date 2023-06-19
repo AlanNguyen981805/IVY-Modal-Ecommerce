@@ -9,3 +9,4 @@ export { default as Accordion } from './Accordion';
 export { default as RangeSlider } from './RangeSlider';
 export { default as Select } from './Select';
 export { default as Sizes } from './Sizes';
+export { default as ModalCart } from './ModalCart';

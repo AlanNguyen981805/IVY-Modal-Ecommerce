@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 import icons from '@/utils/icons';
+import ModalCart from '@/components/ModalCart';
 
 import { listTopSeach } from '../data.header';
 
@@ -22,6 +23,7 @@ interface IProps {
 const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
   const [isShowMostSearchModal, setIsShowMostSearchModal] = useState(false);
   const [isShowHelperModal, setIsShowHelperModal] = useState(false);
+  const [isShowModalCart, setIsShowModalCart] = useState(false);
 
   const handleOnMouseEnter = () => {
     setIsShowMostSearchModal(true);
@@ -71,7 +73,7 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
         <span className="mr-6 cursor-pointer">
           <AiOutlineUser size={20} />
         </span>
-        <span className="mr-6 cursor-pointer">
+        <span className="mr-6 cursor-pointer" onClick={() => setIsShowModalCart(true)}>
           <HiOutlineShoppingBag size={20} />
         </span>
 
@@ -103,6 +105,13 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
           </div>
         )}
       </div>
+      <ModalCart
+        className={{
+          'mr-[-450px]': !isShowModalCart,
+          'mr-0': isShowModalCart,
+        }}
+        onClose={() => setIsShowModalCart(false)}
+      />
     </div>
   );
 };
