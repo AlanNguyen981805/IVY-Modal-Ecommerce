@@ -16,6 +16,10 @@ module.exports = {
         primary: '#57585A',
         primaryDark: '#221F20',
       },
+      borderColor: {
+        primary: '#57585A',
+        primaryDark: '#221F20',
+      },
       backgroundColor: {
         primary: '#57585A',
         primaryDark: '#221F20',

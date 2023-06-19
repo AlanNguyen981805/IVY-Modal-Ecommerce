@@ -30,7 +30,7 @@ const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
                   onClick={() => handleActive(item)}
                   key={item.id}
                   style={{ backgroundColor: item.code }}
-                  className={`flex items-center justify-center w-6 h-6 rounded-full cursor-pointer`}
+                  className={`flex items-center justify-center w-5 h-5 rounded-full cursor-pointer`}
                 >
                   {colorActive === item.id && <BsCheckLg color="white" />}
                 </li>

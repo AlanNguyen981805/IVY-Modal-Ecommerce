@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+appearance: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  cursor: ew-resize;
+  background: #000;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
+/* .bg-gradient-custom {
+  background: ;
+} */
+
 @keyframes slide-up {
     0% {
       transform: translateY(20%);
@@ -94,4 +110,61 @@
 
   .arrowRight:hover {
     animation: bounce-right 0.6s infinite ease-in-out;
+  }
+
+
+
+
+.keen-slider [class^="number-slide"],
+.keen-slider [class*=" number-slide"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  height: 200px;
+  /* max-height: 100vh; */
+}
+
+.keen-slider__image img:hover {
+  scale: 2;
+}
+
+
+.thumbnail .keen-slider__slide {
+  font-size: 30px;
+  margin-top: 10px;
+  height: 100px;
+}
+.thumbnail .keen-slider__slide {
+  cursor: pointer;
+}
+.thumbnail .keen-slider__slide.active {
+  border: 2px solid gray;
+}
+
+
+input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+
+  .accordion-content {
+    transition: max-height 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .open {
+    max-height: 500px;
   }

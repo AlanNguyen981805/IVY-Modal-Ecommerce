@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
@@ -9,9 +10,8 @@ import { tranformCurrency } from '@/utils/tranform';
 import Label from './components/Label';
 import Colors from './components/Colors';
 import ModalSize from './components/ModalSize';
-import classNames from 'classnames';
 
-const { AiOutlineHeart, HiOutlineShoppingBag } = icons;
+const { CiHeart, HiOutlineShoppingBag } = icons;
 interface IProps {
   itemProduct: any;
 }
@@ -50,7 +50,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
       </div>
 
       {/* label discount */}
-      <span className="absolute pl-3 pr-4 py-[13px] font-semibold text-white bg-[#D73831] rounded-tl-full rounded-tr-full rounded-bl-full right-3 top-3">
+      <span className="absolute pl-2 pr-3 py-[10px] font-semibold text-white bg-[#D73831] rounded-tl-full rounded-tr-full rounded-bl-full right-3 top-3">
         -70 <span className="absolute text-xs">%</span>
       </span>
 
@@ -61,7 +61,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
       <div>
         <div className="flex items-center justify-between mt-4">
           <Colors colorActive={colorActive} setColorActive={setColorActive} colors={itemProduct.colors} />
-          <AiOutlineHeart size={30} className="cursor-pointer" />
+          <CiHeart size={24} className="cursor-pointer" />
         </div>
 
         <p className="mt-4 text-left text-primary">{itemProduct.title}</p>
