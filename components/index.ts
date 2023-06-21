@@ -10,3 +10,5 @@ export { default as RangeSlider } from './RangeSlider';
 export { default as Select } from './Select';
 export { default as Sizes } from './Sizes';
 export { default as ModalCart } from './ModalCart';
+export { default as CustomInput } from './Input';
+export { default as Toggle } from './Toggle';

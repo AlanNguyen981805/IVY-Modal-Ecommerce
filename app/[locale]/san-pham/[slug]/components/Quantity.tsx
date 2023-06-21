@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 
 interface IProps {
-  showLabel: boolean;
+  showLabel?: boolean;
   classNameBtn1?: string;
   classNameBtn2?: string;
   classNameInput?: string;

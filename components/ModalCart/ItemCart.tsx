@@ -25,11 +25,11 @@ const ItemCart = () => {
         </div>
         <div className="flex items-center justify-between w-full pl-2">
           <Quantity
-            classNameParent2="w-[70px]"
+            classNameParent2="!w-[70px]"
             showLabel={false}
-            classNameBtn1="w-[30px] right-12"
-            classNameBtn2="w-[30px] left-12"
-            classNameParent="h-[30px]"
+            classNameBtn1="!w-[30px] !right-12"
+            classNameBtn2="!w-[30px] !left-12"
+            classNameParent="!h-[30px]"
           />
           <span className="text-[#AC2F33] font-semibold">
             600.000<ins>đ</ins>
