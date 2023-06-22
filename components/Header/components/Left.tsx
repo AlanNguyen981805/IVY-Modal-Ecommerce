@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 
 import { categories } from '../data.header';
+import Link from 'next/link';
+import { ROUTER } from '@/utils/consts';
 
 const HeaderLeft = () => {
   const [isShowChildCate, setIsShowChildCate] = useState(false);
@@ -43,11 +45,11 @@ const HeaderLeft = () => {
             <li className="mr-12">
               <span className="block mb-2 font-semibold">ÁO</span>
               <ul>
-                <li className="mb-2 font-light">Áo sơ mi</li>
-                <li className="mb-2 font-light">Áo dạ</li>
-                <li className="mb-2 font-light">Áo thun ngắn tay</li>
-                <li className="mb-2 font-light">Áo thun dài tay</li>
-                <li className="mb-2 font-light">Áo len</li>
+                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo sơ mi</Link></li>
+                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo dạ</Link></li>
+                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo thun ngắn tay</Link></li>
+                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo thun dài tay</Link></li>
+                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo len</Link></li>
               </ul>
             </li>
             <li className="mr-12">

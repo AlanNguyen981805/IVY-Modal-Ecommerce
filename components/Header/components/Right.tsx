@@ -1,8 +1,10 @@
 'use client';
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import icons from '@/utils/icons';
 import ModalCart from '@/components/ModalCart';
+import { ROUTER } from '@/utils/consts';
 
 import { listTopSeach } from '../data.header';
 
@@ -71,7 +73,9 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
           <BsHeadphones size={20} onClick={() => setIsShowHelperModal(!isShowHelperModal)} />
         </span>
         <span className="mr-6 cursor-pointer">
-          <AiOutlineUser size={20} />
+          <Link href={ROUTER.CUSTOMER.LOGIN}>
+            <AiOutlineUser size={20} />
+          </Link>
         </span>
         <span className="mr-6 cursor-pointer" onClick={() => setIsShowModalCart(true)}>
           <HiOutlineShoppingBag size={20} />

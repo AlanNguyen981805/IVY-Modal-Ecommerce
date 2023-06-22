@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import classNames from 'classnames';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
+import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
 
 import Label from './components/Label';
@@ -21,6 +23,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
   const [imageProduct, setImageProduct] = useState(itemProduct.images[0]);
   const [imgShow, setImgShow] = useState(imageProduct?.img?.[0]);
   const [colorActive, setColorActive] = useState('1');
+  const router = useRouter();
 
   useEffect(() => {
     const products = itemProduct.images.find((item: any) => item.idColor === colorActive);
@@ -31,8 +34,8 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
   }, [colorActive]);
 
   return (
-    <div className="relative ">
-      <div className="w-full h-full ">
+    <div className="relative">
+      <div className="w-full h-full" onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/${itemProduct.slug}`)}>
         {imageProduct?.img?.map((item: any) => {
           return (
             <Image
@@ -73,10 +76,13 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
           </p>
           <span
             onClick={() => setIsShowSizeModal(!isShowSizeModal)}
-            className={classNames("relative px-3 py-2  transition border border-gray-700 rounded-tl-lg rounded-br-lg cursor-pointer hover:bg-white hover:text-gray-800", {
-              'bg-white text-gray-800': isShowSizeModal,
-              'bg-primaryDark text-white': !isShowSizeModal
-            })}
+            className={classNames(
+              'relative px-3 py-2  transition border border-gray-700 rounded-tl-lg rounded-br-lg cursor-pointer hover:bg-white hover:text-gray-800',
+              {
+                'bg-white text-gray-800': isShowSizeModal,
+                'bg-primaryDark text-white': !isShowSizeModal,
+              },
+            )}
           >
             <HiOutlineShoppingBag size={24} />
             {isShowSizeModal && <ModalSize sizes={['S', 'M', 'L', 'XL']} />}

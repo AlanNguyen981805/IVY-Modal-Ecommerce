@@ -1,6 +1,10 @@
 import classNames from 'classnames';
+
 import icons from '@/utils/icons';
+import { ROUTER } from '@/utils/consts';
+
 import ItemCart from './ItemCart';
+import { useRouter } from 'next/navigation';
 
 const { RiCloseFill } = icons;
 interface IProps {
@@ -8,6 +12,8 @@ interface IProps {
   className?: any;
 }
 const ModalCart: React.FC<IProps> = ({ onClose, className }) => {
+  const router = useRouter();
+
   return (
     <div
       className={classNames(
@@ -39,10 +45,16 @@ const ModalCart: React.FC<IProps> = ({ onClose, className }) => {
         Tổng cộng: <span className="text-xl font-semibold">1.400.000đ</span>
       </p>
       <div className="mx-4">
-        <button className="w-full mb-4 text-xl font-semibold text-center text-white transition-all duration-700 bg-black border h-14 hover:bg-white hover:text-primaryDark">
+        <button
+          onClick={() => router.push(`${ROUTER.PAYMENT.CART}`)}
+          className="w-full mb-4 text-xl font-semibold text-center text-white transition-all duration-700 bg-black border h-14 hover:bg-white hover:text-primaryDark"
+        >
           XEM GIỎ HÀNG
         </button>
-        <button className="w-full text-xl font-semibold text-center transition-all duration-700 border h-14 hover:bg-black hover:text-white">
+        <button
+          onClick={() => router.push(`${ROUTER.CUSTOMER.LOGIN}`)}
+          className="w-full text-xl font-semibold text-center transition-all duration-700 border h-14 hover:bg-black hover:text-white"
+        >
           ĐĂNG NHẬP
         </button>
       </div>
