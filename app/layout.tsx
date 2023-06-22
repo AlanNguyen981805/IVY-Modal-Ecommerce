@@ -1,10 +1,9 @@
-import { useLocale } from 'next-intl';
 import { Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
 import { Footer, Header } from '@/components';
 
-import './../globals.css';
+import './globals.css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,12 +15,9 @@ const inter = Montserrat({
   display: 'swap',
 });
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: any }) {
-  const locale = useLocale();
-  if (params.locale !== locale) {
-    notFound();
-  }
+
   return (
-    <html lang={locale} className={inter.className}>
+    <html className={inter.className}>
       <body className={' container m-auto'}>
         <Header />
         <div className="mt-24">{children}</div>
