@@ -1,5 +1,7 @@
 import { CustomButton } from '@/components';
+import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
+import Link from 'next/link';
 import React from 'react';
 
 const { BsFillCheckCircleFill, CiCircleAlert } = icons;
@@ -37,9 +39,11 @@ const Right = () => {
             <span>Đơn hàng của bạn được miễn phí ship</span>
           </div>
 
-          <div className='mt-10 mb-2 border '></div>
+          <div className="mt-10 mb-2 border "></div>
         </div>
-        <CustomButton title="ĐẶT HÀNG" isBgBlack className='w-full py-4 text-xl font-semibold' />
+        <Link href={ROUTER.PAYMENT.ORDER}>
+          <CustomButton title="ĐẶT HÀNG" isBgBlack className="w-full py-4 text-xl font-semibold" />
+        </Link>
       </div>
     </>
   );

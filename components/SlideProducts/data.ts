@@ -16,6 +16,7 @@ export const dataSlideProducts = {
   ],
   products: [
     {
+      slug: 'product-1',
       idCate: '1',
       images: [
         {
@@ -59,6 +60,7 @@ export const dataSlideProducts = {
       isNew: true,
     },
     {
+      slug: 'product-2',
       idCate: '2',
       images: [
         {
@@ -102,6 +104,7 @@ export const dataSlideProducts = {
       isNew: true,
     },
     {
+      slug: 'product-3',
       idCate: '2',
       images: [
         {
@@ -145,6 +148,7 @@ export const dataSlideProducts = {
       isNew: true,
     },
     {
+      slug: 'product-1',
       idCate: '2',
       images: [
         {
@@ -188,6 +192,7 @@ export const dataSlideProducts = {
       isNew: true,
     },
     {
+      slug: 'product-1',
       idCate: '2',
       images: [
         {
@@ -231,6 +236,7 @@ export const dataSlideProducts = {
       isNew: true,
     },
     {
+      slug: 'product-1',
       idCate: '2',
       images: [
         {

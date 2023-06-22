@@ -1,11 +1,16 @@
-import { Quantity } from '@/app/[locale]/san-pham/[slug]/components';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
+import { Quantity } from '@/app/[locale]/san-pham/[slug]/components';
+import { ROUTER } from '@/utils/consts';
+
 const ItemCart = () => {
+  const router = useRouter()
+
   return (
     <div className="flex items-center w-full py-2 border-b">
-      <div>
+      <div onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/product-123`)}>
         <Image
           alt=""
           src={'https://pubcdn.ivymoda.com/files/product/thumab/400/2022/09/07/ae414863b1076ad51e4de4bb6dcaa748.jpg'}

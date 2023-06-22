@@ -12,3 +12,4 @@ export { default as Sizes } from './Sizes';
 export { default as ModalCart } from './ModalCart';
 export { default as CustomInput } from './Input';
 export { default as Toggle } from './Toggle';
+export { default as CustomLoading } from './Loading';
