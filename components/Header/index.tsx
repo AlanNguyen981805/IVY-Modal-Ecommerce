@@ -1,10 +1,8 @@
 import React from 'react';
-import { useTranslations } from 'next-intl';
 
 import { HeaderCenter, HeaderLeft, HeaderRight } from './components';
 
 const Header = () => {
-  const t = useTranslations('Header');
 
   return (
     <div className="fixed top-0 z-30 w-full">
@@ -17,7 +15,7 @@ const Header = () => {
             <HeaderCenter />
           </div>
           <div className="flex justify-end w-2/5">
-            <HeaderRight placeholderInput={t('searchProducts')} />
+            <HeaderRight placeholderInput={'tìm kiếm sản phẩm'} />
           </div>
         </div>
       </div>

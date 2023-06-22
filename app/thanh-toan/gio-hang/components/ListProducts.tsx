@@ -1,4 +1,4 @@
-import { Quantity } from '@/app/[locale]/san-pham/[slug]/components';
+import { Quantity } from '@/app/san-pham/[slug]/components';
 import icons from '@/utils/icons';
 import Image from 'next/image';
 import React from 'react';
