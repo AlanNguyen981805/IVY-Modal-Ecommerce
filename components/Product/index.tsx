@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
@@ -21,7 +21,7 @@ interface IProps {
 const Product: React.FC<IProps> = ({ itemProduct }) => {
   const [isShowSizeModal, setIsShowSizeModal] = useState(false);
   const [imageProduct, setImageProduct] = useState(itemProduct.images[0]);
-  const [imgShow, setImgShow] = useState(imageProduct?.img?.[0]);
+  const [isShowImage, setIsShowImage] = useState(false);
   const [colorActive, setColorActive] = useState('1');
   const router = useRouter();
 
@@ -29,27 +29,36 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
     const products = itemProduct.images.find((item: any) => item.idColor === colorActive);
     if (products) {
       setImageProduct(products);
-      setImgShow(products.img[0]);
     }
   }, [colorActive]);
 
   return (
     <div className="relative">
       <div className="w-full h-full" onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/${itemProduct.slug}`)}>
-        {imageProduct?.img?.map((item: any) => {
-          return (
+        <>
+          <div onMouseLeave={() => setIsShowImage(false)} onMouseEnter={() => setIsShowImage(true)}>
             <Image
-              onMouseLeave={() => setImgShow(imageProduct?.img[0])}
-              onMouseEnter={() => setImgShow(imageProduct?.img[1])}
-              key={item}
-              src={imgShow}
+              src={imageProduct?.img[0]}
               width={330}
               height={500}
               alt="product"
-              className="w-full cursor-pointer first:absolute"
+              loading="lazy"
+              className={classNames('w-full transition duration-700  ease-in-out cursor-pointer first:absolute', {
+                'opacity-0': isShowImage,
+              })}
             />
-          );
-        })}
+            <Image
+              src={imageProduct?.img[1]}
+              width={330}
+              height={500}
+              alt="product"
+              loading="lazy"
+              className={classNames('w-full transition duration-700  ease-in-out cursor-pointer first:absolute', {
+                'opacity-100': !isShowImage,
+              })}
+            />
+          </div>
+        </>
       </div>
 
       {/* label discount */}
