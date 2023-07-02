@@ -1,16 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { categories } from '../data.header';
-import Link from 'next/link';
-import { ROUTER } from '@/utils/consts';
+import { ICategory } from '@/types/category';
+import SubCate from './SubCate';
 
-const HeaderLeft = () => {
+interface IProps {
+  categories: ICategory[];
+}
+const HeaderLeft: React.FC<IProps> = ({ categories }) => {
   const [isShowChildCate, setIsShowChildCate] = useState(false);
+  const [subCate, setSubCate] = useState<ICategory | null>(null)
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (item?: ICategory) => {
     setIsShowChildCate(true);
+    item && setSubCate(item)
   };
 
   const handleMouseLeave = () => {
@@ -19,108 +23,25 @@ const HeaderLeft = () => {
 
   return (
     <div className="flex">
-      {categories.map(item => (
-        <span
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="md:mr-5 2xl:text-base md:text-sm sm:text-xs sm:mr-2   font-semibold cursor-pointer hover:text-[#AC2F33] transition hover:after:content-[''] hover:after:block hover:after:w-full hover:after:h-4 hover:after:absolute relative"
-          key={item.id}
-        >
-          {item.name.toUpperCase()}
-        </span>
+      {categories.map((item, index) => (
+        <>
+          <span
+            onMouseEnter={() => handleMouseEnter(item)}
+            onMouseLeave={handleMouseLeave}
+            className="md:mr-5 2xl:text-base md:text-sm sm:text-xs sm:mr-2   font-semibold cursor-pointer hover:text-[#AC2F33] transition hover:after:content-[''] hover:after:block hover:after:w-full hover:after:h-4 hover:after:absolute relative"
+            key={index}
+          >
+            {item.name.toUpperCase()}
+          </span>
+        </>
       ))}
       {isShowChildCate && (
         <div
           className=" absolute z-20 w-full bg-white px-[23px] py-6  top-14 animate-slide-up border border-[#E7E8E9] flex "
-          onMouseEnter={handleMouseEnter}
+          onMouseEnter={() => handleMouseEnter()}
           onMouseLeave={handleMouseLeave}
         >
-          <ul className="mr-12">
-            <li className="mb-4 font-semibold">NEW ARIVAL</li>
-            <li className="mb-4 font-semibold">MOMENT OF DELIGHT</li>
-            <li className="mb-4 font-semibold">IVY YOU</li>
-            <li className="mb-4 font-semibold">SUMMER SCENT COLLECTIOIN</li>
-          </ul>
-          <ul className="flex flex-wrap">
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ÁO</span>
-              <ul>
-                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo sơ mi</Link></li>
-                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo dạ</Link></li>
-                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo thun ngắn tay</Link></li>
-                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo thun dài tay</Link></li>
-                <li className="mb-2 font-light"><Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>Áo len</Link></li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ÁO KHOÁC</span>
-              <ul>
-                <li className="mb-2 font-light">Áo khoác</li>
-                <li className="mb-2 font-light">Áo dạ</li>
-                <li className="mb-2 font-light">Áo măng tô</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">QUẦN & JUMPSUIT</span>
-              <ul>
-                <li className="mb-2 font-light">Item 1</li>
-                <li className="mb-2 font-light">Item 1</li>
-                <li className="mb-2 font-light">Item 1</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">CHÂN VÁY</span>
-              <ul>
-                <li className="mb-2 font-light">Chân váy</li>
-                <li className="mb-2 font-light">Chân váy xếp ly</li>
-                <li className="mb-2 font-light">Chân váy chữ A</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ĐẦM</span>
-              <ul>
-                <li className="mb-2 font-light">Đầm</li>
-                <li className="mb-2 font-light">Đầm maxi/ voan</li>
-                <li className="mb-2 font-light">Đầm thun</li>
-                <li className="mb-2 font-light">Senora - Đầm dạ hội</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ĐỒ LÓT</span>
-              <ul>
-                <li className="mb-2 font-light">Quần bra</li>
-                <li className="mb-2 font-light">Quần lót</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">PHỤ KIỆN</span>
-              <ul>
-                <li className="mb-2 font-light">Túi/Ví</li>
-                <li className="mb-2 font-light">Giày/dép & Sandals</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ĐỒ LÓT</span>
-              <ul>
-                <li className="mb-2 font-light">Quần bra</li>
-                <li className="mb-2 font-light">Quần lót</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ĐỒ LÓT</span>
-              <ul>
-                <li className="mb-2 font-light">Quần bra</li>
-                <li className="mb-2 font-light">Quần lót</li>
-              </ul>
-            </li>
-            <li className="mr-12">
-              <span className="block mb-2 font-semibold">ĐỒ LÓT</span>
-              <ul>
-                <li className="mb-2 font-light">Quần bra</li>
-                <li className="mb-2 font-light">Quần lót</li>
-              </ul>
-            </li>
-          </ul>
+          <SubCate data={subCate} />
         </div>
       )}
     </div>

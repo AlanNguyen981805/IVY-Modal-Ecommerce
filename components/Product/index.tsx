@@ -20,25 +20,23 @@ interface IProps {
 
 const Product: React.FC<IProps> = ({ itemProduct }) => {
   const [isShowSizeModal, setIsShowSizeModal] = useState(false);
-  const [imageProduct, setImageProduct] = useState(itemProduct.images[0]);
   const [isShowImage, setIsShowImage] = useState(false);
   const [colorActive, setColorActive] = useState('1');
   const router = useRouter();
-
   useEffect(() => {
-    const products = itemProduct.images.find((item: any) => item.idColor === colorActive);
-    if (products) {
-      setImageProduct(products);
-    }
+    // const products = itemProduct.images.find((item: any) => item.idColor === colorActive);
+    // if (products) {
+    //   setImageProduct(products);
+    // }
   }, [colorActive]);
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <div className="w-full h-full" onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/${itemProduct.slug}`)}>
         <>
           <div onMouseLeave={() => setIsShowImage(false)} onMouseEnter={() => setIsShowImage(true)}>
             <Image
-              src={imageProduct?.img[0]}
+              src={itemProduct.colors[0].image.imgProduct.split(',')[0]}
               width={330}
               height={500}
               alt="product"
@@ -48,7 +46,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
               })}
             />
             <Image
-              src={imageProduct?.img[1]}
+              src={itemProduct.colors[0].image.imgProduct.split(',')[1]}
               width={330}
               height={500}
               alt="product"

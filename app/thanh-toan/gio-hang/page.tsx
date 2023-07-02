@@ -1,6 +1,6 @@
 import React from 'react';
-import Left from './components/Left';
-import Right from './components/Right';
+import Right from '@/components/App/ThanhToan/GioHang/Right';
+import Left from '@/components/App/ThanhToan/GioHang/Left';
 
 const GioHang = () => {
   return (

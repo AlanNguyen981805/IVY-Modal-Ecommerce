@@ -1,7 +1,7 @@
 import { CustomLoading } from '@/components';
 
 const Loading = () => {
-  return <CustomLoading />;
+  return <h1>Loading......</h1>
 };
 
 export default Loading;

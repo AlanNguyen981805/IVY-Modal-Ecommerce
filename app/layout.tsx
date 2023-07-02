@@ -1,9 +1,9 @@
 import { Montserrat } from 'next/font/google';
-import { notFound } from 'next/navigation';
 
 import { Footer, Header } from '@/components';
 
 import './globals.css';
+import Providers from '@/utils/react-query/provider';
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,13 +15,14 @@ const inter = Montserrat({
   display: 'swap',
 });
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: any }) {
-
   return (
     <html className={inter.className}>
       <body className={' container m-auto'}>
-        <Header />
-        <div className="mt-24">{children}</div>
-        <Footer />
+        <Providers>
+          <Header />
+          <div className="mt-24">{children}</div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

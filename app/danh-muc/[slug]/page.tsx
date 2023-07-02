@@ -1,7 +1,8 @@
-import { Breadcrumb } from '@/components';
 import React from 'react';
-import Filter from './components/Filter';
-import List from './components/List';
+
+import { Breadcrumb } from '@/components';
+import Filter from '@/components/App/DanhMuc/Filter';
+import List from '@/components/App/DanhMuc/List';
 
 const Page = ({ params: { slug } }: any) => {
   return (
