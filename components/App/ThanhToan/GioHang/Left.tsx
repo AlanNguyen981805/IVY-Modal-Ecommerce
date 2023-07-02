@@ -1,6 +1,6 @@
 import { CustomButton } from '@/components';
 import ListProducts from './ListProducts';
-import Process from '../../components/Process';
+import Process from '../Process';
 
 const Left = () => {
   return (

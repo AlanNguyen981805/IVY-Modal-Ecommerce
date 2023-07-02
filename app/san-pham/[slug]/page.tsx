@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { Breadcrumb, SlideProducts } from '@/components';
-import { dataSlideProducts } from '@/components/SlideProducts/data';
-
-import { LeftDetail, RightDetail } from './components';
+import { LeftDetail, RightDetail } from '@/components/App/SanPham';
 
 const DetailProduct = () => {
   return (
@@ -18,10 +16,10 @@ const DetailProduct = () => {
         </div>
       </div>
       <div className="mt-4">
-        <SlideProducts isViewAll={false} listProducts={dataSlideProducts.products} title="Sản phẩm tương tự" />
+        <SlideProducts isViewAll={false} title="Sản phẩm tương tự" categories={[]} />
       </div>
       <div className="mt-4">
-        <SlideProducts isViewAll={false} listProducts={dataSlideProducts.products} title="Sản phẩm đã xem" />
+        <SlideProducts isViewAll={false} title="Sản phẩm đã xem" categories={[]} />
       </div>
     </>
   );

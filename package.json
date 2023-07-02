@@ -12,10 +12,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.19",
     "@types/node": "20.2.5",
     "@types/react": "18.2.9",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
@@ -36,7 +38,8 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "react-query-devtools": "^2.6.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

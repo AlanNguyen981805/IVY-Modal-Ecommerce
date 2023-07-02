@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseForm from '../components/BaseForm';
+import BaseForm from '../../../components/App/Customer/BaseForm';
 import { CustomInput } from '@/components';
 
 const LoginWithOtp = () => {

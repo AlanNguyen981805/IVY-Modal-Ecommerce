@@ -1,16 +1,17 @@
-"use client"
+'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react'; // import from 'keen-slider/react.es' for to get an ES module
 
 import icons from '@/utils/icons';
 
-const { HiArrowLeft,HiArrowRight } = icons;
+const { HiArrowLeft, HiArrowRight } = icons;
 export const Carosousel = ({ children }: { children: React.ReactNode }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [loaded, setLoaded] = useState(false);
   const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
     slides: {
       perView: 5,
       spacing: 30,
@@ -23,9 +24,15 @@ export const Carosousel = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
+  useEffect(() => {
+    if(loaded) {
+      instanceRef.current?.update();
+    }
+  }, [children, loaded, instanceRef]);
+
   return (
     <div ref={ref} className="px-1 keen-slider">
-      {children}
+      {loaded && children}
       {
         <>
           <div className="absolute cursor-pointer arrowSlide">

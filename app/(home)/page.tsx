@@ -1,27 +1,24 @@
 import React from 'react';
 
+import { getConfigPage } from '@/services/setting/setting.api';
 import { SlideProducts, Slider } from '@/components';
-import { dataSlideProducts } from '@/components/SlideProducts/data';
-
-const Page = () => {
+export const revalidate = 0;
+const Page = async () => {
+  const res: any = await getConfigPage();
   return (
     <>
       <div className="h-[560px]">
         <Slider />
       </div>
-
-      <SlideProducts
-        listProducts={dataSlideProducts.products}
-        title="NEW ARRIVAL"
-        categories={['IVY-modal', 'IVY-men', 'IVY-kids']}
-      />
-      <SlideProducts
-        listProducts={dataSlideProducts.products}
-        isViewAll={false}
-        categories={['IVY-modal', 'IVY-men', 'IVY-kids']}
-        title="BEST SELLER - ONLINE ONLY"
-      />
-       {/* <ProductImage />  */}
+      {res.data.data[0].page?.home && (
+        res.data.data[0].page?.home.map((item: any, index: number) => (
+          <SlideProducts
+            key={index}
+            title={item.title}
+            categories={item.sub_cate}
+          />
+        ))
+      )}
     </>
   );
 };

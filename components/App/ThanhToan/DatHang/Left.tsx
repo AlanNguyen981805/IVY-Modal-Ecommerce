@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Process from '../../components/Process';
+import Process from '../../../../components/App/ThanhToan/Process';
 import { CustomButton, Toggle } from '@/components';
 import FormAddress from './FormAddress';
 import FormVAT from './FormVAT';

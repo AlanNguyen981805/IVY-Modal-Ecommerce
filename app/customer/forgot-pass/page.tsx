@@ -1,6 +1,7 @@
 import React from 'react';
-import BaseForm from '../components/BaseForm';
+
 import { CustomInput } from '@/components';
+import BaseForm from '@/components/App/Customer/BaseForm';
 
 const ForgotPassword = () => {
   return (

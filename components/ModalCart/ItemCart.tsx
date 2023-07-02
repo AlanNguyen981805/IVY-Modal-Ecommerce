@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-import { Quantity } from '@/app/san-pham/[slug]/components';
+import { Quantity } from '@/components/App/SanPham';
 import { ROUTER } from '@/utils/consts';
 
 const ItemCart = () => {

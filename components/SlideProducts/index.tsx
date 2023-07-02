@@ -1,52 +1,19 @@
-'use client';
-
-import { Carosousel } from '@/core/Carosel';
-// import Carousel from '@/core/Carosel';
-
-import Product from '../Product';
-import classNames from 'classnames';
-import { useState } from 'react';
+import { Suspense } from 'react';
+import ListProduct from './ListProduct';
+import { getProducts } from '@/services/product/product.api';
+import { ISubCate } from '@/types/settings';
 
 interface IProps {
   title?: string;
-  categories?: string[];
-  listProducts: any[];
+  categories: ISubCate[];
   isViewAll?: boolean;
 }
 
-const SlideProducts: React.FC<IProps> = ({ title, categories, listProducts, isViewAll = true }) => {
-  const [cateActive, setCateActive] = useState(categories?.[0]);
+const SlideProducts: React.FC<IProps> = async ({ title, categories, isViewAll = true }) => {
+  const products = await getProducts(categories?.[0]?.query || '');
   return (
     <div className="my-10">
-      <div className="flex flex-col items-center">
-        {title && <p className="mt-2 mb-5 text-3xl font-semibold">{title.toUpperCase()}</p>}
-        {categories && categories.length > 0 && (
-          <ul className="flex gap-10 mb-5">
-            {categories.map(item => (
-              <li
-                key={item}
-                onClick={() => setCateActive(item)}
-                className={classNames(
-                  'mb-2 text-xl transition border-black cursor-pointer hover:border-b-2 text-primary',
-                  {
-                    'border-b-2': item === cateActive,
-                  },
-                )}
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <Carosousel>
-        {listProducts?.length > 0 &&
-          listProducts.map((item, index) => (
-            <div key={index} className="relative !overflow-visible text-center snap-start keen-slider__slide">
-              <Product key={index} itemProduct={item} />
-            </div>
-          ))}
-      </Carosousel>
+      <ListProduct categories={categories} title={title || ''} products={products} />
 
       {isViewAll && (
         <div className="flex justify-center mt-6">
