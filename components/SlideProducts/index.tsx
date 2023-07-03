@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import ListProduct from './ListProduct';
-import { getProducts } from '@/services/product/product.api';
+import { getProductsByCate } from '@/services/product/product.api';
 import { ISubCate } from '@/types/settings';
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const SlideProducts: React.FC<IProps> = async ({ title, categories, isViewAll = true }) => {
-  const products = await getProducts(categories?.[0]?.query || '');
+  const products = await getProductsByCate(categories?.[0]?.query || '');
   return (
     <div className="my-10">
       <ListProduct categories={categories} title={title || ''} products={products} />
