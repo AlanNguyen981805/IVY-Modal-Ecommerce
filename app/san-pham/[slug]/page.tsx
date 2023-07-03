@@ -15,12 +15,12 @@ const DetailProduct = () => {
           <RightDetail />
         </div>
       </div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <SlideProducts isViewAll={false} title="Sản phẩm tương tự" categories={[]} />
       </div>
       <div className="mt-4">
         <SlideProducts isViewAll={false} title="Sản phẩm đã xem" categories={[]} />
-      </div>
+      </div> */}
     </>
   );
 };

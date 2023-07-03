@@ -5,14 +5,15 @@ import React, { Suspense, useState } from 'react';
 
 import { ISubCate } from '@/types/settings';
 import { Carosousel } from '@/core/Carosel';
-import { getProducts } from '@/services/product/product.api';
+import { IResponseProductByCate } from '@/types/product';
+import { getProductsByCate } from '@/services/product/product.api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import Product from '../Product';
 
 interface IProps {
   categories: ISubCate[];
-  products: any;
+  products: IResponseProductByCate;
   title: string;
 }
 const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
@@ -22,7 +23,7 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
 
   const { data, isLoading } = useQuery({
     queryKey: ['products', cateActive],
-    queryFn: () => getProducts(cateActive),
+    queryFn: () => getProductsByCate(cateActive),
     initialData: products,
     staleTime: TIME_TO_REFRESH,
     keepPreviousData: false,
@@ -40,7 +41,7 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
                 key={item}
                 onClick={() => {
                   queryClient.prefetchQuery(['products', item.query], {
-                    queryFn: () => getProducts(item.query),
+                    queryFn: () => getProductsByCate(item.query),
                     staleTime: TIME_TO_REFRESH,
                   });
                   setCateActive(item.query);
@@ -61,9 +62,9 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
       {isLoading && <h1>loaddingnggg</h1>}
       <Carosousel>
         {!isLoading &&
-          data.products.map((item: any, index: number) => (
-            <div key={index} className="relative !overflow-visible text-center snap-start keen-slider__slide">
-              <Product key={index} itemProduct={item} />
+          data.products.map(item => (
+            <div key={item.id} className="relative !overflow-visible text-center snap-start keen-slider__slide">
+              <Product attributeProduct={item} />
             </div>
           ))}
       </Carosousel>

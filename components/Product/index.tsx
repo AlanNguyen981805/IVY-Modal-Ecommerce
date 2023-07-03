@@ -12,31 +12,34 @@ import { tranformCurrency } from '@/utils/tranform';
 import Label from './components/Label';
 import Colors from './components/Colors';
 import ModalSize from './components/ModalSize';
+import { IProduct } from '@/types/product';
 
 const { CiHeart, HiOutlineShoppingBag } = icons;
 interface IProps {
-  itemProduct: any;
+  attributeProduct: IProduct;
 }
 
-const Product: React.FC<IProps> = ({ itemProduct }) => {
+const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const [isShowSizeModal, setIsShowSizeModal] = useState(false);
   const [isShowImage, setIsShowImage] = useState(false);
+  const [imageProduct, setImageProduct] = useState(attributeProduct?.colors[0]);
   const [colorActive, setColorActive] = useState('1');
   const router = useRouter();
+
   useEffect(() => {
-    // const products = itemProduct.images.find((item: any) => item.idColor === colorActive);
-    // if (products) {
-    //   setImageProduct(products);
-    // }
+    const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive);
+    if (foundProducts) {
+      setImageProduct(foundProducts);
+    }
   }, [colorActive]);
 
   return (
     <div className="relative ">
-      <div className="w-full h-full" onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/${itemProduct.slug}`)}>
+      <div className="w-full h-full" onClick={() => router.push(`${ROUTER.DETAIL_PRODUCT}/${attributeProduct.slug}`)}>
         <>
           <div onMouseLeave={() => setIsShowImage(false)} onMouseEnter={() => setIsShowImage(true)}>
             <Image
-              src={itemProduct.colors[0].image.imgProduct.split(',')[0]}
+              src={imageProduct?.image.imgProduct.split(',')[0]}
               width={330}
               height={500}
               alt="product"
@@ -46,7 +49,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
               })}
             />
             <Image
-              src={itemProduct.colors[0].image.imgProduct.split(',')[1]}
+              src={imageProduct?.image.imgProduct.split(',')[1]}
               width={330}
               height={500}
               alt="product"
@@ -64,22 +67,26 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
         -70 <span className="absolute text-xs">%</span>
       </span>
 
-      <Label title="NEW" color="bg-[#E7973E]" colorBadge="border-t-[#AC2E33]" />
+      {attributeProduct.isNew && !attributeProduct.isBestSeller && (
+        <Label title="NEW" color="bg-[#E7973E]" colorBadge="border-t-[#AC2E33]" />
+      )}
 
-      {/* <Label title="Best Seller" color="bg-[#AC2E33]" colorBadge="border-t-[#D73831]" /> */}
+      {attributeProduct.isBestSeller && (
+        <Label title="Best Seller" color="bg-[#AC2E33]" colorBadge="border-t-[#D73831]" />
+      )}
 
       <div>
         <div className="flex items-center justify-between mt-4">
-          <Colors colorActive={colorActive} setColorActive={setColorActive} colors={itemProduct.colors} />
+          <Colors colorActive={colorActive} setColorActive={setColorActive} colors={attributeProduct?.colors} />
           <CiHeart size={24} className="cursor-pointer" />
         </div>
 
-        <p className="mt-4 text-left text-primary">{itemProduct.title}</p>
+        <p className="mt-4 text-left text-primary">{attributeProduct?.title}</p>
 
         <div className="flex items-center justify-between mt-3">
           <p className="font-semibold text-[#3E3E3F] text-lg">
-            {tranformCurrency(itemProduct.price)}đ
-            <del className="text-xs text-[#A8A9AD] pl-1">{tranformCurrency(itemProduct.oldPrice)}đ</del>
+            {tranformCurrency(attributeProduct?.price)}đ
+            <del className="text-xs text-[#A8A9AD] pl-1">{tranformCurrency(attributeProduct?.oldPrice)}đ</del>
           </p>
           <span
             onClick={() => setIsShowSizeModal(!isShowSizeModal)}
@@ -92,7 +99,7 @@ const Product: React.FC<IProps> = ({ itemProduct }) => {
             )}
           >
             <HiOutlineShoppingBag size={24} />
-            {isShowSizeModal && <ModalSize sizes={['S', 'M', 'L', 'XL']} />}
+            {isShowSizeModal && <ModalSize sizes={imageProduct?.sizes} />}
           </span>
         </div>
       </div>

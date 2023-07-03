@@ -1,21 +1,23 @@
 'use client';
 
 import { useEffect } from 'react';
+
 import icons from '@/utils/icons';
+import { IProductColor } from '@/types/product';
 
 const { BsCheckLg } = icons;
 interface IProps {
-  colors: { id: string; code: string; active?: boolean }[];
+  colors: IProductColor[];
   colorActive: string;
-  setColorActive: any;
+  setColorActive: (idColor: string) => void;
 }
 const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
-  const handleActive = (item: { id: string; code: string; active?: boolean }) => {
+  const handleActive = (item: IProductColor) => {
     setColorActive(item.id);
   };
 
   useEffect(() => {
-    const activeColor = colors.find(item => item?.active === true);
+    const activeColor = colors?.find(item => item?.isActive === true);
     if (activeColor) setColorActive(activeColor?.id);
   }, []);
 
@@ -23,7 +25,7 @@ const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
     <>
       <div className="flex items-center mr-4">
         <ul className="flex gap-4">
-          {colors.length > 0 &&
+          {colors?.length > 0 &&
             colors.map(item => {
               return (
                 <li
