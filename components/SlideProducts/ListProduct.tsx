@@ -30,6 +30,8 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
     cacheTime: 2000,
   });
 
+  console.log({data})
+
   return (
     <>
       <div className="flex flex-col items-center">

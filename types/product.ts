@@ -3,7 +3,6 @@ export interface IProductColor {
   name: string;
   code: string;
   isActive: boolean;
-  sizes: IProductSize[];
   image: {
     imgProduct: string;
   };
@@ -15,6 +14,7 @@ export interface IProductSize {
   code: string;
   stock: {
     quantity: number;
+    colorId: string;
   };
 }
 
@@ -36,6 +36,7 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string;
   colors: IProductColor[];
+  sizes: IProductSize[];
 }
 
 export interface IResponseProductByCate {
