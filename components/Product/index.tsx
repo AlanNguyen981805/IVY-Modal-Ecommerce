@@ -12,9 +12,9 @@ import { tranformCurrency } from '@/utils/tranform';
 import Label from './components/Label';
 import Colors from './components/Colors';
 import ModalSize from './components/ModalSize';
-import { IProduct } from '@/types/product';
+import { IProduct, IProductSize } from '@/types/product';
 
-const { CiHeart, HiOutlineShoppingBag } = icons;
+const { CiHeart, HiOutlineShoppingBag, BsBagX } = icons;
 interface IProps {
   attributeProduct: IProduct;
 }
@@ -24,12 +24,17 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const [isShowImage, setIsShowImage] = useState(false);
   const [imageProduct, setImageProduct] = useState(attributeProduct?.colors[0]);
   const [colorActive, setColorActive] = useState('1');
+  const [listSizeByColor, setListSizeByColor] = useState<IProductSize[] | []>([]);
   const router = useRouter();
 
   useEffect(() => {
     const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive);
     if (foundProducts) {
       setImageProduct(foundProducts);
+      const list = attributeProduct.sizes.filter(item => item.stock.colorId === foundProducts?.id);
+      if (list) {
+        setListSizeByColor(list);
+      }
     }
   }, [colorActive]);
 
@@ -89,17 +94,24 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
             <del className="text-xs text-[#A8A9AD] pl-1">{tranformCurrency(attributeProduct?.oldPrice)}đ</del>
           </p>
           <span
-            onClick={() => setIsShowSizeModal(!isShowSizeModal)}
+            onClick={() => {
+              if (listSizeByColor.length > 0) {
+                setIsShowSizeModal(!isShowSizeModal);
+              }
+            }}
             className={classNames(
-              'relative px-3 py-2  transition border border-gray-700 rounded-tl-lg rounded-br-lg cursor-pointer hover:bg-white hover:text-gray-800',
+              'relative px-3 py-2   transition border border-gray-700 rounded-tl-lg rounded-br-lg ',
               {
                 'bg-white text-gray-800': isShowSizeModal,
                 'bg-primaryDark text-white': !isShowSizeModal,
+                'cursor-not-allowed': listSizeByColor.length <= 0,
+                'cursor-pointer  hover:bg-white hover:text-gray-800': listSizeByColor.length > 0,
               },
             )}
           >
-            <HiOutlineShoppingBag size={24} />
-            {isShowSizeModal && <ModalSize sizes={imageProduct?.sizes} />}
+            {listSizeByColor.length > 0 ? <HiOutlineShoppingBag size={24} /> : <BsBagX size={24} />}
+
+            {isShowSizeModal && <ModalSize sizes={listSizeByColor} />}
           </span>
         </div>
       </div>

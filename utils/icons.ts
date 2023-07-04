@@ -1,5 +1,15 @@
 import { CiSearch, CiHeart, CiCircleAlert } from 'react-icons/ci';
-import { BsCart4, BsHeadphones, BsChatDots, BsCheckLg, BsArrowRight, BsArrowLeft, BsPlus, BsFillCheckCircleFill } from 'react-icons/bs';
+import {
+  BsCart4,
+  BsHeadphones,
+  BsChatDots,
+  BsCheckLg,
+  BsArrowRight,
+  BsArrowLeft,
+  BsPlus,
+  BsFillCheckCircleFill,
+  BsBagX
+} from 'react-icons/bs';
 import { AiOutlineUser, AiOutlineHeart, AiFillStar } from 'react-icons/ai';
 import { HiOutlineShoppingBag, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { BiPhoneCall, BiMinus } from 'react-icons/bi';
@@ -12,6 +22,7 @@ import { IoIosArrowRoundForward, IoIosArrowRoundBack } from 'react-icons/io';
 import { TfiReload, TfiEmail } from 'react-icons/tfi';
 
 const icons = {
+  BsBagX,
   BsFillCheckCircleFill,
   CiCircleAlert,
   RiDeleteBin6Line,
