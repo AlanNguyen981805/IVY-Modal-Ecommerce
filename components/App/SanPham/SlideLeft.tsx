@@ -85,7 +85,7 @@ export default function SlideLeft({ images }: IProps) {
         </div>
 
         <div className="w-[140px] ml-4 overflow-hidden">
-          <div ref={thumbnailRef} className=" keen-slider thumbnail">
+          <div ref={thumbnailRef} className="h-full keen-slider thumbnail">
             {images.map(item => (
               <div key={item} className="keen-slider__slide">
                 <Image src={item} fill alt="thumnail" />

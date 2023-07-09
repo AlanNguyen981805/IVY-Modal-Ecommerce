@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, memo, useState } from 'react';
 
 import { ISubCate } from '@/types/settings';
 import { Carosousel } from '@/core/Carosel';
@@ -10,6 +10,8 @@ import { getProductsByCate } from '@/services/product/product.api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import Product from '../Product';
+import { useShowModalCart } from '@/hooks/useShowModalCart';
+import ModalCart from '../ModalCart';
 
 interface IProps {
   categories: ISubCate[];
@@ -17,8 +19,9 @@ interface IProps {
   title: string;
 }
 const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
-  const [cateActive, setCateActive] = useState(categories[0].query || '');
+  const [cateActive, setCateActive] = useState(categories?.[0]?.query || '');
   const queryClient = useQueryClient();
+  const { isShowModal } = useShowModalCart();
   const TIME_TO_REFRESH = 1000;
 
   const { data, isLoading } = useQuery({
@@ -29,8 +32,6 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
     keepPreviousData: false,
     cacheTime: 2000,
   });
-
-  console.log({data})
 
   return (
     <>
@@ -74,4 +75,4 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
   );
 };
 
-export default ListProduct;
+export default memo(ListProduct);

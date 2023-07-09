@@ -1,11 +1,24 @@
+'use client';
+
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+
 import { CustomButton } from '@/components';
+import { tranformCurrency } from '@/utils/tranform';
+import { useProductStore } from '@/hooks/useProductStore';
 import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
-import Link from 'next/link';
-import React from 'react';
 
 const { BsFillCheckCircleFill, CiCircleAlert } = icons;
 const Right = () => {
+  const { products, total } = useProductStore();
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return null;
   return (
     <>
       <div className="ml-8">
@@ -13,19 +26,19 @@ const Right = () => {
           <h3 className="mb-4 text-2xl font-medium">Tổng tiền giỏ hàng</h3>
           <div className="flex justify-between mb-4 text-base">
             <span>Tổng sản phẩm</span>
-            <span>5</span>
+            <span>{products.length}</span>
           </div>
           <div className="flex justify-between mb-4 text-base">
             <span className="text-sm">Tổng tiền hàng</span>
-            <span>3.459.000đ</span>
+            <span>{tranformCurrency(total)}đ</span>
           </div>
           <div className="flex justify-between mb-6 text-base">
             <span className="text-sm">Thành tiền</span>
-            <span className="font-semibold">3.459.000đ</span>
+            <span className="font-semibold">{tranformCurrency(total)}đ</span>
           </div>
           <div className="flex justify-between mb-6 text-base">
             <span className="text-sm">Tạm tính</span>
-            <span className="text-xl font-semibold">3.459.000đ</span>
+            <span className="text-xl font-semibold">{tranformCurrency(total)}đ</span>
           </div>
 
           <div className="flex items-center text-[#AC2F33] mb-4">

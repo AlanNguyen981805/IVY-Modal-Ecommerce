@@ -21,6 +21,7 @@ const Page = async () => {
             key={index}
             title={item.title}
             categories={item.sub_cate}
+            cate={item.sub_cate[0].query}
           />
         ))
       )}

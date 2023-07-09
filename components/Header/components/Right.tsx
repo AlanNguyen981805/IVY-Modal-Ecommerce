@@ -1,12 +1,14 @@
 'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 
 import icons from '@/utils/icons';
-import ModalCart from '@/components/ModalCart';
 import { ROUTER } from '@/utils/consts';
 
 import { listTopSeach } from '../data.header';
+import { useProductStore } from '@/hooks/useProductStore';
+import { useShowModalCart } from '@/hooks/useShowModalCart';
 
 const {
   CiSearch,
@@ -25,7 +27,8 @@ interface IProps {
 const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
   const [isShowMostSearchModal, setIsShowMostSearchModal] = useState(false);
   const [isShowHelperModal, setIsShowHelperModal] = useState(false);
-  const [isShowModalCart, setIsShowModalCart] = useState(false);
+  const { products }: any = useProductStore();
+  const { openModal } = useShowModalCart();
 
   const handleOnMouseEnter = () => {
     setIsShowMostSearchModal(true);
@@ -34,6 +37,11 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
   const handleOnMouseLeave = () => {
     setIsShowMostSearchModal(false);
   };
+
+  const [hydrated, setHydrated] = React.useState(false);
+  React.useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <div>
@@ -77,9 +85,12 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
             <AiOutlineUser size={20} />
           </Link>
         </span>
-        <span className="mr-6 cursor-pointer" onClick={() => setIsShowModalCart(true)}>
+        <div className="relative mr-6 cursor-pointer" onClick={openModal}>
           <HiOutlineShoppingBag size={20} />
-        </span>
+          <span className="absolute w-5 h-5 flex items-center justify-center text-xs top-[-15px] right-[-25px] text-white bg-black rounded-full">
+            {hydrated && products?.length}
+          </span>
+        </div>
 
         {isShowHelperModal && (
           <div className="absolute w-[255px] right-28 bg-white px-[23px] py-6  top-12 animate-slide-up border border-[#E7E8E9]  ">
@@ -109,13 +120,7 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
           </div>
         )}
       </div>
-      <ModalCart
-        className={{
-          'mr-[-450px]': !isShowModalCart,
-          'mr-0': isShowModalCart,
-        }}
-        onClose={() => setIsShowModalCart(false)}
-      />
+        
     </div>
   );
 };

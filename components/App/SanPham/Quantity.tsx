@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 interface IProps {
   showLabel?: boolean;
@@ -10,6 +10,11 @@ interface IProps {
   classNameInput?: string;
   classNameParent?: string;
   classNameParent2?: string;
+  numInStock: number;
+  quantity?: number;
+  setQuantity?: any;
+  onMinus?: (quantity: number) => void;
+  onPlus?: (quantity: number) => void;
 }
 const Quantity: React.FC<IProps> = ({
   showLabel = true,
@@ -18,9 +23,21 @@ const Quantity: React.FC<IProps> = ({
   classNameBtn2,
   classNameInput,
   classNameParent,
+  numInStock,
+  quantity,
+  onMinus,
+  onPlus,
+  setQuantity,
 }) => {
-  const [valueQuantity, setValueQuantity] = useState(0);
+  const [valueQuantity, setValueQuantity] = useState(quantity || 0);
 
+  useEffect(() => {
+    quantity && setValueQuantity(quantity);
+  }, [quantity]);
+
+  useEffect(() => {
+    setQuantity && setQuantity(quantity);
+  }, [valueQuantity]);
   return (
     <div className="flex items-center mt-4">
       {showLabel && (
@@ -32,7 +49,12 @@ const Quantity: React.FC<IProps> = ({
       <div className={classNames('h-12 w-36 custom-number-input', classNameParent2)}>
         <div className={classNames('relative flex flex-row w-full mt-1 bg-transparent rounded-lg', classNameParent)}>
           <button
-            onClick={() => setValueQuantity(valueQuantity - 1)}
+            onClick={() => {
+              if (valueQuantity > 0) {
+                setValueQuantity(valueQuantity - 1);
+                onMinus && onMinus(1);
+              }
+            }}
             data-action="decrement"
             className={classNames(
               'absolute w-[55px] h-full text-gray-600 bg-white border outline-none cursor-pointer right-24 rounded-tl-xl rounded-br-xl hover:text-gray-700',
@@ -51,7 +73,12 @@ const Quantity: React.FC<IProps> = ({
             value={valueQuantity}
           ></input>
           <button
-            onClick={() => setValueQuantity(valueQuantity + 1)}
+            onClick={() => {
+              if (valueQuantity < numInStock) {
+                setValueQuantity(valueQuantity + 1);
+                onPlus && onPlus(1);
+              }
+            }}
             data-action="increment"
             className={classNames(
               'absolute w-[55px] h-full text-gray-600 bg-white border rounded-r cursor-pointer left-24 rounded-tl-xl rounded-br-xl hover:text-gray-700',
@@ -66,4 +93,4 @@ const Quantity: React.FC<IProps> = ({
   );
 };
 
-export default Quantity;
+export default memo(Quantity);

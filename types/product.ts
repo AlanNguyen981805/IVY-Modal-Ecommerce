@@ -15,6 +15,7 @@ export interface IProductSize {
   stock: {
     quantity: number;
     colorId: string;
+    sku: string;
   };
 }
 
@@ -37,6 +38,25 @@ export interface IProduct {
   updatedAt: string;
   colors: IProductColor[];
   sizes: IProductSize[];
+}
+
+export interface IProductCart {
+  name: string;
+  id: string;
+  quantity: number;
+  image: string;
+  size: {
+    id: string;
+    name: string;
+    stock: number;
+  };
+  color: {
+    id: string;
+    name: string;
+  };
+  price: number;
+  totalPriceBySku: number,
+  sku: string;
 }
 
 export interface IResponseProductByCate {
