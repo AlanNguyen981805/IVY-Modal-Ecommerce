@@ -3,16 +3,17 @@
 import Image from 'next/image';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
+import { IProduct, IProductColor, IProductSize } from '@/types/product';
 
 import Label from './components/Label';
 import Colors from './components/Colors';
 import ModalSize from './components/ModalSize';
-import { IProduct, IProductSize } from '@/types/product';
+import { useProductStore } from '@/hooks/useProductStore';
 
 const { CiHeart, HiOutlineShoppingBag, BsBagX } = icons;
 interface IProps {
@@ -23,12 +24,13 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const [isShowSizeModal, setIsShowSizeModal] = useState(false);
   const [isShowImage, setIsShowImage] = useState(false);
   const [imageProduct, setImageProduct] = useState(attributeProduct?.colors[0]);
-  const [colorActive, setColorActive] = useState('1');
+  const [colorActive, setColorActive] = useState<IProductColor | null>(null);
   const [listSizeByColor, setListSizeByColor] = useState<IProductSize[] | []>([]);
   const router = useRouter();
+  const { addToCart } = useProductStore();
 
   useEffect(() => {
-    const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive);
+    const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive?.id);
     if (foundProducts) {
       setImageProduct(foundProducts);
       const list = attributeProduct.sizes.filter(item => item.stock.colorId === foundProducts?.id);
@@ -111,7 +113,14 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
           >
             {listSizeByColor.length > 0 ? <HiOutlineShoppingBag size={24} /> : <BsBagX size={24} />}
 
-            {isShowSizeModal && <ModalSize sizes={listSizeByColor} />}
+            {isShowSizeModal && (
+              <ModalSize
+                sizes={listSizeByColor}
+                handleAddCard={item => {
+                  colorActive && addToCart(attributeProduct, colorActive, item, 1);
+                }}
+              />
+            )}
           </span>
         </div>
       </div>
@@ -119,4 +128,4 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   );
 };
 
-export default Product;
+export default memo(Product);

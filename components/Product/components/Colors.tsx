@@ -8,17 +8,17 @@ import { IProductColor } from '@/types/product';
 const { BsCheckLg } = icons;
 interface IProps {
   colors: IProductColor[];
-  colorActive: string;
-  setColorActive: (idColor: string) => void;
+  colorActive: IProductColor | null;
+  setColorActive: (idColor: IProductColor) => void;
 }
 const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
   const handleActive = (item: IProductColor) => {
-    setColorActive(item.id);
+    setColorActive(item);
   };
 
   useEffect(() => {
     const activeColor = colors?.find(item => item?.isActive === true);
-    if (activeColor) setColorActive(activeColor?.id);
+    if (activeColor) setColorActive(activeColor);
   }, []);
 
   return (
@@ -32,9 +32,9 @@ const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
                   onClick={() => handleActive(item)}
                   key={item.id}
                   style={{ backgroundColor: item.code }}
-                  className={`flex items-center justify-center w-5 h-5 rounded-full cursor-pointer`}
+                  className={`flex items-center justify-center w-5 h-5 rounded-full cursor-pointer border`}
                 >
-                  {colorActive === item.id && <BsCheckLg color="white" />}
+                  {colorActive && colorActive.id === item.id && <BsCheckLg color="white" />}
                 </li>
               );
             })}
