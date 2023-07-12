@@ -8,13 +8,15 @@ interface IProps {
 }
 const LeftDetail: React.FC<IProps> = ({ product }) => {
    
-   const listImage = useMemo(() => {
+   const listImage: any[] = useMemo(() => {
     return product.colors.map((item) => item?.image?.imgProduct.trim().split(','))
    }, [product])
 
   return (
     <div>
+      {listImage?.flat() && (
       <SliderLeft images={listImage?.flat()} />
+      )}
     </div>
   );
 };

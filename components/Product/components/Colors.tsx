@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
 import { IProductColor } from '@/types/product';
@@ -8,18 +8,43 @@ import { IProductColor } from '@/types/product';
 const { BsCheckLg } = icons;
 interface IProps {
   colors: IProductColor[];
-  colorActive: IProductColor | null;
-  setColorActive: (idColor: IProductColor) => void;
+  colorActive?: IProductColor | null;
+  setColorActive?: (idColor: IProductColor) => void;
+  isMultiSelected?: boolean;
+  onChangeMultiColor?: (color: IProductColor[]) => void;
+  dataActived?: IProductColor[];
 }
-const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
+const Colors: React.FC<IProps> = ({
+  colors,
+  colorActive,
+  setColorActive,
+  isMultiSelected = false,
+  onChangeMultiColor,
+  dataActived,
+}) => {
+  const [arraySelected, setArraySelected] = useState<IProductColor[]>(dataActived || []);
   const handleActive = (item: IProductColor) => {
-    setColorActive(item);
+    if (isMultiSelected) {
+      const found = arraySelected.find(data => data.id === item.id);
+      const newSelected = found ? arraySelected.filter(i => i.id !== item.id) : [...arraySelected, item];
+      setArraySelected(newSelected);
+    } else {
+      setColorActive && setColorActive(item);
+    }
   };
 
   useEffect(() => {
     const activeColor = colors?.find(item => item?.isActive === true);
-    if (activeColor) setColorActive(activeColor);
+    if (activeColor) {
+      setColorActive && setColorActive(activeColor);
+    }
   }, []);
+
+  useEffect(() => {
+    if (isMultiSelected) {
+      onChangeMultiColor && onChangeMultiColor(arraySelected);
+    }
+  }, [isMultiSelected, arraySelected]);
 
   return (
     <>
@@ -34,7 +59,9 @@ const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
                   style={{ backgroundColor: item.code }}
                   className={`flex items-center justify-center w-5 h-5 rounded-full cursor-pointer border`}
                 >
-                  {colorActive && colorActive.id === item.id && <BsCheckLg color="white" />}
+                  {(isMultiSelected ? arraySelected.find(size => size.id === item.id) : colorActive === item) && (
+                    <BsCheckLg color={item.code === '#fff' ? 'black' : 'white'}/>
+                  )}
                 </li>
               );
             })}
@@ -44,4 +71,4 @@ const Colors: React.FC<IProps> = ({ colors, colorActive, setColorActive }) => {
   );
 };
 
-export default Colors;
+export default memo(Colors);

@@ -1,9 +1,20 @@
 import { IProduct, IResponseProductByCate } from '@/types/product';
 import { DOMAIN } from '../constApi';
 import http from '../http';
+import { transformToQueryString } from '@/utils/tranform';
 
-export const getProductsByCate = async (cate: string) => {
-  const response = await http.get<{ data: IResponseProductByCate }>(DOMAIN.GET_PRODUCTS_BY_CATE + '/' + cate);
+export const getProductsByCate = async (cate: string, query?: string) => {
+  const response = await http.get<{ data: IResponseProductByCate }>(
+    DOMAIN.GET_PRODUCTS_BY_CATE + '/' + cate + `?${query}`,
+  );
+  return response.data.data;
+};
+
+interface IParams {}
+export const getProducts = async (category?: string, query?: { [key: string]: string | string[] | undefined }) => {
+  const urlAPI = category ? DOMAIN.GET_PRODUCTS_BY_CATE + '/' + category : DOMAIN.GET_PRODUCT;
+  const querySearch = transformToQueryString(query)
+  const response = await http.get<{ data: IResponseProductByCate }>(`${urlAPI}?${querySearch}`);
   return response.data.data;
 };
 

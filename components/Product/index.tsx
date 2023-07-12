@@ -33,7 +33,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
     const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive?.id);
     if (foundProducts) {
       setImageProduct(foundProducts);
-      const list = attributeProduct.sizes.filter(item => item.stock.colorId === foundProducts?.id);
+      const list = attributeProduct.sizes.filter(item => item?.stock?.colorId === foundProducts?.id);
       if (list) {
         setListSizeByColor(list);
       }
@@ -46,7 +46,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
         <>
           <div onMouseLeave={() => setIsShowImage(false)} onMouseEnter={() => setIsShowImage(true)}>
             <Image
-              src={imageProduct?.image.imgProduct.split(',')[0]}
+              src={imageProduct?.image?.imgProduct?.split(',')[0] ?? ''}
               width={330}
               height={500}
               alt="product"
@@ -56,7 +56,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
               })}
             />
             <Image
-              src={imageProduct?.image.imgProduct.split(',')[1]}
+              src={imageProduct?.image?.imgProduct.split(',')[1] ?? ''}
               width={330}
               height={500}
               alt="product"
