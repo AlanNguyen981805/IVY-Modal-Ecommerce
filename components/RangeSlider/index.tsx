@@ -1,17 +1,26 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 
 import { tranformCurrency } from '@/utils/tranform';
 
-const RangeSlider = ({ initialMin, initialMax, min, max, step, priceCap }: any) => {
+interface IProps {
+  initialMin: number;
+  initialMax: number;
+  min: number;
+  max: number;
+  step: number;
+  priceCap: number;
+  onChange?: ({ minValue, maxValue }: { minValue: number; maxValue: number }) => void;
+}
+const RangeSlider = ({ initialMin, initialMax, min, max, step, priceCap, onChange }: IProps) => {
   const progressRef = useRef(null);
   const [minValue, setMinValue] = useState(initialMin);
   const [maxValue, setMaxValue] = useState(initialMax);
 
   const handleMin = (e: any) => {
     if (maxValue - minValue >= priceCap && maxValue <= max) {
-      if (parseInt(e.target.value) > parseInt(maxValue)) {
+      if (parseInt(e.target.value) > parseInt(maxValue.toString())) {
       } else {
         setMinValue(parseInt(e.target.value));
       }
@@ -24,7 +33,7 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceCap }: any) 
 
   const handleMax = (e: any) => {
     if (maxValue - minValue >= priceCap && maxValue <= max) {
-      if (parseInt(e.target.value) < parseInt(minValue)) {
+      if (parseInt(e.target.value) < parseInt(minValue.toString())) {
       } else {
         setMaxValue(parseInt(e.target.value));
       }
@@ -44,6 +53,10 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceCap }: any) 
       }
     }
   }, [minValue, maxValue, max, step]);
+
+  useEffect(() => {
+    onChange && onChange({ minValue, maxValue });
+  }, [minValue, maxValue]);
 
   return (
     <div className="relative">
@@ -81,4 +94,4 @@ const RangeSlider = ({ initialMin, initialMax, min, max, step, priceCap }: any) 
   );
 };
 
-export default RangeSlider;
+export default memo(RangeSlider);

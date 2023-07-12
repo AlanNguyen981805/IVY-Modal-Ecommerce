@@ -47,7 +47,7 @@ const RightDetail: React.FC<IProps> = ({ product }) => {
       <Colors setColorActive={setColorActive} colorActive={colorActive} colors={product.colors} />
 
       <Sizes
-        sizes={product?.sizes?.filter(item => item.stock.colorId === colorActive?.id)}
+        sizes={product?.sizes?.filter(item => item?.stock?.colorId === colorActive?.id)}
         isShowCheckSize
         isMultiSelected={false}
         onChange={value => {

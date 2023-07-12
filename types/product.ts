@@ -1,9 +1,9 @@
 export interface IProductColor {
   id: string;
-  name: string;
+  name?: string;
   code: string;
-  isActive: boolean;
-  image: {
+  isActive?: boolean;
+  image?: {
     imgProduct: string;
   };
 }
@@ -12,7 +12,7 @@ export interface IProductSize {
   id: string;
   name: string;
   code: string;
-  stock: {
+  stock?: {
     quantity: number;
     colorId: string;
     sku: string;

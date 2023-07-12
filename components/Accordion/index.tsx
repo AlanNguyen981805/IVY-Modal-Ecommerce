@@ -9,11 +9,11 @@ const { BsPlus, BiMinus } = icons;
 interface IProps {
   children: React.ReactNode;
   title: string;
+  isShow?: boolean
 }
 
-export default function CustomAccordion({ children, title }: IProps) {
-  const [active, setActive] = useState(false);
-
+export default function CustomAccordion({ children, title, isShow = false }: IProps) {
+  const [active, setActive] = useState(isShow);
   return (
     <div className="w-full">
       <div className="relative py-5 border-b">

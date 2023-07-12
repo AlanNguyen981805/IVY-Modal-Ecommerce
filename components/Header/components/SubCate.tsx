@@ -20,7 +20,7 @@ const SubCate: React.FC<IProps> = ({ data }) => {
   const renderSubChildren = (subChildren: ICategory[]) => {
     return subChildren.map((subChild: ICategory) => (
       <li className="mb-2 font-light cursor-pointer" key={subChild.id}>
-        <Link href={`${ROUTER.PRODUCTS_BY_CATE}/cate123`}>{subChild.name}</Link>
+        <Link href={`${ROUTER.PRODUCTS_BY_CATE}/${subChild.slug}`}>{subChild.name}</Link>
       </li>
     ));
   };

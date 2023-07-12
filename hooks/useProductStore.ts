@@ -19,7 +19,7 @@ export const useProductStore = create(
       addToCart: (product: IProduct, color: IProductColor, size: IProductSize, quantity: number) => {
         set((state: any) => {
           const transform = transformProduct(product, color, size, quantity);
-          const foundIndex = state?.products?.findIndex((item: any) => item.sku === size.stock.sku);
+          const foundIndex = state?.products?.findIndex((item: any) => item.sku === size?.stock?.sku);
 
           if (foundIndex !== -1) {
             const updatedProucts = [...state.products];
@@ -80,17 +80,20 @@ export const transformProduct = (
   return {
     id: product.id,
     name: product.title,
-    color,
-    image: color.image.imgProduct.split(',')[0],
+    color: {
+      id: color.id,
+      name: color.name || '',
+    },
+    image: color?.image?.imgProduct?.split(',')[0] || '',
     price: Number(product.price) * quantity,
     size: {
       id: size.id,
       name: size.name,
-      stock: size.stock.quantity,
+      stock: size?.stock?.quantity || 0,
     },
     quantity: quantity,
-    sku: size.stock.sku,
-    totalPriceBySku: Number(product.price)
+    sku: size?.stock?.sku || '',
+    totalPriceBySku: Number(product.price),
   };
 };
 
