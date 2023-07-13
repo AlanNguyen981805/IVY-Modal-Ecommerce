@@ -8,9 +8,10 @@ export const tranformCurrency = (num: string | number) => {
   return num?.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.');
 };
 
-export const transformToQueryString = (data: { [key: string]: string }) => {
+export const transformToQueryString = (data?: { [key: string]: string | string[] | undefined }) => {
+  if (!data) return '';
   const queryString = Object.keys(data)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key] as string)}`)
     .join('&');
   return queryString;
 };

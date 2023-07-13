@@ -30,10 +30,10 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const { addToCart } = useProductStore();
 
   useEffect(() => {
-    const foundProducts = attributeProduct?.colors.find(item => item.id === colorActive?.id);
-    if (foundProducts) {
-      setImageProduct(foundProducts);
-      const list = attributeProduct.sizes.filter(item => item?.stock?.colorId === foundProducts?.id);
+    const foundColorProduct = attributeProduct?.colors.find(item => item.id === colorActive?.id);
+    if (foundColorProduct) {
+      setImageProduct(foundColorProduct);
+      const list = attributeProduct.listSizes.filter(item => item.colorId === foundColorProduct?.id);
       if (list) {
         setListSizeByColor(list);
       }

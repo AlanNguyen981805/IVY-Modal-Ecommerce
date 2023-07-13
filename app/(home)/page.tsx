@@ -1,30 +1,22 @@
-import React from 'react';
-
 import { getConfigPage } from '@/services/setting/setting.api';
 import { SlideProducts, Slider } from '@/components';
 import { getSliders } from '@/services/slider/slider.api';
 
-export const revalidate = 0;
-
 const Page = async () => {
-  const res: any = await getConfigPage();
-  const sliders = await getSliders()
+  const promiseConfigPage: any = getConfigPage();
+  const promiseSliders = getSliders();
+
+  const [configPage, sliders] = await Promise.all([promiseConfigPage, promiseSliders]);
 
   return (
     <>
-      <div className="h-[560px]">
+      <div className="h-[800px]">
         <Slider sliders={sliders} />
       </div>
-      {res.data.data[0].page?.home && (
-        res.data.data[0].page?.home.map((item: any, index: number) => (
-          <SlideProducts
-            key={index}
-            title={item.title}
-            categories={item.sub_cate}
-            cate={item.sub_cate[0].query}
-          />
-        ))
-      )}
+      {configPage.data.data[0].page?.home &&
+        configPage.data.data[0].page?.home.map((item: any, index: number) => (
+          <SlideProducts key={index} title={item.title} categories={item.sub_cate} cate={item.sub_cate[0].query} />
+        ))}
     </>
   );
 };

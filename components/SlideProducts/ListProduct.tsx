@@ -1,36 +1,28 @@
 'use client';
 
 import classNames from 'classnames';
-import React, { Suspense, memo, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import { ISubCate } from '@/types/settings';
 import { Carosousel } from '@/core/Carosel';
-import { IResponseProductByCate } from '@/types/product';
 import { getProductsByCate } from '@/services/product/product.api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import Product from '../Product';
-import { useShowModalCart } from '@/hooks/useShowModalCart';
-import ModalCart from '../ModalCart';
 
 interface IProps {
   categories: ISubCate[];
-  products: IResponseProductByCate;
   title: string;
+  cate?: string;
 }
-const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
-  const [cateActive, setCateActive] = useState(categories?.[0]?.query || '');
+const ListProduct: React.FC<IProps> = ({ categories, title, cate }) => {
+  const [cateActive, setCateActive] = useState(categories?.[0]?.query || cate || '');
   const queryClient = useQueryClient();
-  const { isShowModal } = useShowModalCart();
   const TIME_TO_REFRESH = 1000;
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['products', cateActive],
+  const { data } = useQuery({
+    queryKey: ['slide-products', { cate: cateActive }],
     queryFn: () => getProductsByCate(cateActive),
-    initialData: products,
-    staleTime: TIME_TO_REFRESH,
-    keepPreviousData: false,
-    cacheTime: 2000,
   });
 
   return (
@@ -62,14 +54,14 @@ const ListProduct: React.FC<IProps> = ({ categories, products, title }) => {
           </ul>
         )}
       </div>
-      {isLoading && <h1>loaddingnggg</h1>}
       <Carosousel>
-        {!isLoading &&
-          data.products.map(item => (
-            <div key={item.id} className="relative !overflow-visible text-center snap-start keen-slider__slide">
-              <Product attributeProduct={item} />
-            </div>
-          ))}
+        {' '}
+        /
+        {data?.products.map(item => (
+          <div key={item.id} className="relative !overflow-visible text-center snap-start keen-slider__slide">
+            <Product attributeProduct={item} />
+          </div>
+        ))}
       </Carosousel>
     </>
   );

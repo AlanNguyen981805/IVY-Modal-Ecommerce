@@ -1,5 +1,5 @@
 import { IProductSize } from '@/types/product';
-import React from 'react';
+import React, { memo } from 'react';
 
 interface IProps {
   sizes: IProductSize[];
@@ -12,10 +12,10 @@ const ModalSize: React.FC<IProps> = ({ sizes, handleAddCard }) => {
         {sizes.map(item => (
           <li
             className="py-3 text-xl font-semibold px-14 text-primaryDark"
-            key={item.id}
+            key={item.size?.id}
             onClick={() => handleAddCard(item)}
           >
-            {item.name}
+            {item.size?.name}
           </li>
         ))}
       </ul>
@@ -23,4 +23,4 @@ const ModalSize: React.FC<IProps> = ({ sizes, handleAddCard }) => {
   );
 };
 
-export default ModalSize;
+export default memo(ModalSize);

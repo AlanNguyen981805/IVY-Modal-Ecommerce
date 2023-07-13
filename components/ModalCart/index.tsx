@@ -54,13 +54,13 @@ const ModalCart: React.FC<IProps> = ({ className }) => {
       </div>
       <div className="p-4 max-h-[65vh] overflow-y-auto">
         {products.map(item => (
-          <ItemCart product={item} key={item.id} />
+          <ItemCart product={item} key={item.sku} />
         ))}
       </div>
-      <p className="block px-4 pt-8 mb-4 text-sm text-right border-b">
+      <p className="absolute block w-full px-4 pt-8 mb-4 text-sm text-right border-b bottom-36">
         Tổng cộng: <span className="text-xl font-semibold">{tranformCurrency(total.toString())}</span>
       </p>
-      <div className="absolute bottom-0 w-full px-4">
+      <div className="absolute bottom-0 w-full px-4 pb-4">
         <button
           onClick={() => {
             router.push(`${ROUTER.PAYMENT.CART}`);

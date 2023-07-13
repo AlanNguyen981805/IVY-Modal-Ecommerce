@@ -49,7 +49,7 @@ const Colors: React.FC<IProps> = ({
   return (
     <>
       <div className="flex items-center mr-4">
-        <ul className="flex gap-4">
+        <ul className="flex flex-wrap gap-4">
           {colors?.length > 0 &&
             colors.map(item => {
               return (

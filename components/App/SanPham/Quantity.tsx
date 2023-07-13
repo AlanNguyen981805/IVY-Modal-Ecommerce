@@ -36,7 +36,7 @@ const Quantity: React.FC<IProps> = ({
   }, [quantity]);
 
   useEffect(() => {
-    setQuantity && setQuantity(quantity);
+    setQuantity && setQuantity(valueQuantity);
   }, [valueQuantity]);
   return (
     <div className="flex items-center mt-4">
