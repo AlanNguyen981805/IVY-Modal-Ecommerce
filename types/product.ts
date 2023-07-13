@@ -9,13 +9,12 @@ export interface IProductColor {
 }
 
 export interface IProductSize {
-  id: string;
-  name: string;
-  code: string;
-  stock?: {
-    quantity: number;
-    colorId: string;
-    sku: string;
+  colorId: string;
+  quantity: number;
+  sku: string;
+  size?: {
+    id: string;
+    name: string;
   };
 }
 
@@ -37,7 +36,7 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string;
   colors: IProductColor[];
-  sizes: IProductSize[];
+  listSizes: IProductSize[];
 }
 
 export interface IProductCart {
@@ -55,7 +54,7 @@ export interface IProductCart {
     name: string;
   };
   price: number;
-  totalPriceBySku: number,
+  totalPriceBySku: number;
   sku: string;
 }
 

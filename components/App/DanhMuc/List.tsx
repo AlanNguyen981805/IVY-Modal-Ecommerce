@@ -14,11 +14,12 @@ interface IProps {
 }
 const List: React.FC<IProps> = ({ slug, searchParams }) => {
   
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['products', { cate: slug, query: searchParams }],
     queryFn: () => getProducts(slug, searchParams),
     staleTime: 1000,
   });
+  console.log('isLoading :>> ', isLoading);
 
   return (
     <div className="">
@@ -28,7 +29,7 @@ const List: React.FC<IProps> = ({ slug, searchParams }) => {
       </div>
       <div className="grid grid-cols-4 gap-6">
         {data?.products.map(item => (
-          <div className="h-[560px]" key={item.id}>
+          <div className="h-auto" key={item.id}>
             <Product attributeProduct={item} key={item.id} />
           </div>
         ))}

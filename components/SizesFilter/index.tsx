@@ -4,19 +4,19 @@ import classNames from 'classnames';
 import React, { memo, useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
-import { IProductSize } from '@/types/product';
+import { INameCode } from '@/types/common';
 
 interface IProps {
-  sizes: IProductSize[];
+  sizes: INameCode[];
   isShowCheckSize?: boolean;
-  onChange?: (value: IProductSize) => void;
-  onMultiChange?: (value: IProductSize[]) => void;
+  onChange?: (value: INameCode) => void;
+  onMultiChange?: (value: INameCode[]) => void;
   isMultiSelected?: boolean;
-  dataActived?: IProductSize[];
+  dataActived?: INameCode[];
 }
 
 const { RiRulerLine } = icons;
-const Sizes: React.FC<IProps> = ({
+const SizesFilter: React.FC<IProps> = ({
   sizes,
   isShowCheckSize,
   onChange,
@@ -24,12 +24,12 @@ const Sizes: React.FC<IProps> = ({
   onMultiChange,
   dataActived,
 }) => {
-  const [arraySelected, setArraySelected] = useState<IProductSize[]>(dataActived || []);
-  const [active, setActive] = useState<IProductSize>();
-  const handleClick = (item: IProductSize) => {
+  const [arraySelected, setArraySelected] = useState<INameCode[]>(dataActived || []);
+  const [active, setActive] = useState<INameCode>();
+  const handleClick = (item: INameCode) => {
     if (isMultiSelected) {
-      const found = arraySelected.find(data => data.size?.id === item.size?.id);
-      const newSelected = found ? arraySelected.filter(i => i.size?.id !== item.size?.id) : [...arraySelected, item];
+      const found = arraySelected.find(data => data?.id === item?.id);
+      const newSelected = found ? arraySelected.filter(i => i?.id !== item?.id) : [...arraySelected, item];
       setArraySelected(newSelected);
     } else {
       setActive(item);
@@ -44,20 +44,20 @@ const Sizes: React.FC<IProps> = ({
   }, [arraySelected, isMultiSelected, onMultiChange]);
   return (
     <div>
-      <ul className="flex gap-3 mt-5">
+      <ul className="flex flex-wrap gap-3 mt-5">
         {sizes?.length > 0 &&
           sizes.map(item => {
             return (
               <li
                 onClick={() => handleClick(item)}
-                key={item.size?.id}
+                key={item?.id}
                 className={classNames('px-4 py-1 border border-solid cursor-pointer text-primaryDark', {
                   'border-primaryDark font-semibold': isMultiSelected
-                    ? arraySelected.find(size => size.size?.id === item.size?.id)
+                    ? arraySelected.find(size => size?.id === item?.id)
                     : active === item,
                 })}
               >
-                {item.size?.name}
+                {item?.name}
               </li>
             );
           })}
@@ -71,4 +71,4 @@ const Sizes: React.FC<IProps> = ({
   );
 };
 
-export default memo(Sizes);
+export default memo(SizesFilter);

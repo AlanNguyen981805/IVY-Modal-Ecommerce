@@ -10,10 +10,9 @@ export const getProductsByCate = async (cate: string, query?: string) => {
   return response.data.data;
 };
 
-interface IParams {}
 export const getProducts = async (category?: string, query?: { [key: string]: string | string[] | undefined }) => {
   const urlAPI = category ? DOMAIN.GET_PRODUCTS_BY_CATE + '/' + category : DOMAIN.GET_PRODUCT;
-  const querySearch = transformToQueryString(query)
+  const querySearch = query && transformToQueryString(query);
   const response = await http.get<{ data: IResponseProductByCate }>(`${urlAPI}?${querySearch}`);
   return response.data.data;
 };

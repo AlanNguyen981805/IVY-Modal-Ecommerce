@@ -32,7 +32,7 @@ export const Carosousel = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div ref={ref} className="px-1 keen-slider">
-      {loaded && children}
+      {children}
       {
         <>
           <div className="absolute cursor-pointer arrowSlide">

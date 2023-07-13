@@ -19,7 +19,7 @@ export const useProductStore = create(
       addToCart: (product: IProduct, color: IProductColor, size: IProductSize, quantity: number) => {
         set((state: any) => {
           const transform = transformProduct(product, color, size, quantity);
-          const foundIndex = state?.products?.findIndex((item: any) => item.sku === size?.stock?.sku);
+          const foundIndex = state?.products?.findIndex((item: any) => item.sku === size?.sku);
 
           if (foundIndex !== -1) {
             const updatedProucts = [...state.products];
@@ -35,7 +35,7 @@ export const useProductStore = create(
       removeFromCart(sku: string) {
         set((state: any) => {
           const updatedProducts2 = state.products.filter((item: IProductCart) => item.sku !== sku);
-          return { products: updatedProducts2 };
+          return { products: updatedProducts2, total: countPrice(updatedProducts2) };
         });
       },
       onMinus(product: IProductCart) {
@@ -52,6 +52,7 @@ export const useProductStore = create(
       },
       onPlus(product: IProductCart) {
         set(state => {
+          console.log('foundIndex :>> ', 'a');
           const foundIndex = state.products.findIndex((item: any) => item.sku === product.sku);
           if (foundIndex !== -1) {
             const cloneProducts = [...state.products];
@@ -87,12 +88,12 @@ export const transformProduct = (
     image: color?.image?.imgProduct?.split(',')[0] || '',
     price: Number(product.price) * quantity,
     size: {
-      id: size.id,
-      name: size.name,
-      stock: size?.stock?.quantity || 0,
+      id: size.size?.id ?? '',
+      name: size.size?.name || '',
+      stock: size?.quantity || 0,
     },
     quantity: quantity,
-    sku: size?.stock?.sku || '',
+    sku: size?.sku || '',
     totalPriceBySku: Number(product.price),
   };
 };

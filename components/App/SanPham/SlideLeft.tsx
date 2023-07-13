@@ -69,8 +69,8 @@ export default function SlideLeft({ images }: IProps) {
 
   return (
     <>
-      <div className="flex w-full max-h-[800px] h-[800px]">
-        <div ref={sliderRef} className="w-4/5 keen-slider">
+      <div className="flex w-full ">
+        <div ref={sliderRef} className="w-4/5 keen-slider  2xl:h-[1200px] 2xl:m-h-[1200px] xl:h-[900px] xl:m-h-[900px]">
           {images.map(item => (
             <div key={item} className="keen-slider__slide keen-slider__image" onMouseMove={e => handleMouseMove(e)}>
               <Image
@@ -84,11 +84,11 @@ export default function SlideLeft({ images }: IProps) {
           ))}
         </div>
 
-        <div className="w-[140px] ml-4 overflow-hidden">
+        <div className="w-[140px] ml-4 overflow-hidden h-[900px] m-h-[900px]">
           <div ref={thumbnailRef} className="h-full keen-slider thumbnail">
             {images.map(item => (
-              <div key={item} className="keen-slider__slide">
-                <Image src={item} fill alt="thumnail" />
+              <div key={item} className="keen-slider__slide !min-h-[175px]">
+                <Image src={item} width={200} height={300} alt="thumnail" />
               </div>
             ))}
           </div>

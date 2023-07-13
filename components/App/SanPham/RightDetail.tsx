@@ -21,9 +21,6 @@ const RightDetail: React.FC<IProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(0)
   const { addToCart } = useProductStore();
 
-  useEffect(() => {
-    console.log(colorActive);
-  }, [colorActive]);
   return (
     <div className="ml-8">
       <span className="text-3xl font-semibold text-primaryDark">{product.title.toUpperCase()}</span>
@@ -47,7 +44,7 @@ const RightDetail: React.FC<IProps> = ({ product }) => {
       <Colors setColorActive={setColorActive} colorActive={colorActive} colors={product.colors} />
 
       <Sizes
-        sizes={product?.sizes?.filter(item => item?.stock?.colorId === colorActive?.id)}
+        sizes={product?.listSizes?.filter(item => item?.colorId === colorActive?.id)}
         isShowCheckSize
         isMultiSelected={false}
         onChange={value => {
@@ -55,14 +52,14 @@ const RightDetail: React.FC<IProps> = ({ product }) => {
         }}
       />
 
-      <Quantity numInStock={sizeActive?.stock?.quantity || 0} setQuantity={setQuantity}  />
+      <Quantity numInStock={sizeActive?.quantity || 0} setQuantity={setQuantity}  />
 
       <div className="flex gap-3 mt-6">
         <CustomButton
           title="Thêm vào giỏ"
           className="px-8 py-4 ml-0 font-semibold"
           isBgBlack
-          onClick={() => colorActive && sizeActive && addToCart(product, colorActive, sizeActive, 4)}
+          onClick={() => colorActive && sizeActive && addToCart(product, colorActive, sizeActive, quantity)}
         />
         <CustomButton title="Mua hàng" className="px-8 py-4 font-semibold" />
         <CustomButton title={(<AiOutlineHeart size={24} />) as unknown as string} />
