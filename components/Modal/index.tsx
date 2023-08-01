@@ -7,12 +7,12 @@ const Modal = () => {
   const { isShowModal } = useShowModalCart();
   return (
     <div>
-      <ModalCart
-        className={{
-          'mr-[-450px]': !isShowModal,
-          'mr-0': isShowModal,
-        }}
-      />
+        <ModalCart
+          className={{
+            'mr-[-450px]': !isShowModal,
+            'mr-0': isShowModal,
+          }}
+        />
     </div>
   );
 };

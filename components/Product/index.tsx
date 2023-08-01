@@ -33,7 +33,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
     const foundColorProduct = attributeProduct?.colors.find(item => item.id === colorActive?.id);
     if (foundColorProduct) {
       setImageProduct(foundColorProduct);
-      const list = attributeProduct.listSizes.filter(item => item.colorId === foundColorProduct?.id);
+      const list = attributeProduct?.listSizes?.filter(item => item.colorId === foundColorProduct?.id);
       if (list) {
         setListSizeByColor(list);
       }

@@ -57,7 +57,7 @@ const ListProduct: React.FC<IProps> = ({ categories, title, cate }) => {
       <Carosousel>
         {' '}
         /
-        {data?.products.map(item => (
+        {data?.map(item => (
           <div key={item.id} className="relative !overflow-visible text-center snap-start keen-slider__slide">
             <Product attributeProduct={item} />
           </div>

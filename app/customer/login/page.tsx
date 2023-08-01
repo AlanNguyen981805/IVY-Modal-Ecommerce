@@ -1,19 +1,60 @@
-import { CustomButton, CustomInput } from '@/components';
-import { ROUTER } from '@/utils/consts';
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { CustomButton, CustomInput } from '@/components';
+import { IFormLogin } from '@/types/auth';
+import { ROUTER } from '@/utils/consts';
+import { useMutation } from '@tanstack/react-query';
+import { login } from '@/services/auth/auth.api';
+import { toast } from 'react-hot-toast';
+import { AxiosError } from 'axios';
+import { useStoreAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormLogin>();
+  const { setStoreAuth, user, isLogged } = useStoreAuth();
+  const router = useRouter();
+
+  const loginMutation = useMutation({
+    mutationFn: (body: IFormLogin) => {
+      return login(body);
+    },
+    onSuccess: (data: any) => {
+      setStoreAuth(data.data);
+      toast.success('Đăng nhập thành công');
+      router.push('/');
+    },
+    onError(error: AxiosError<{ message: string }>, variables, context) {
+      toast.error(error?.response?.data.message || '');
+    },
+  });
+
+  const handleLogin = (data: IFormLogin) => {
+    loginMutation.mutate(data);
+  };
+
+  useEffect(() => {
+    if (isLogged) router.push('/');
+  }, []);
+
   return (
-    <div className="flex justify-around pb-6 border-b mt-28">
+    <form onSubmit={handleSubmit(handleLogin)} className="flex justify-around pb-6 border-b mt-28">
       <div className="flex-col flex-none w-[480px]">
         <h3 className="mb-4 text-xl font-semibold text-center">Bạn đã có tài khoản IVY</h3>
         <p className="mb-6 text-center text-primary">
           Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được những ưu đãi tốt hơn!
         </p>
         <div className="px-6">
-          <CustomInput placeholder="Email/SĐT" className="mb-6" />
-          <CustomInput placeholder="Mật khẩu" />
+          <CustomInput placeholder="Email/SĐT" className="mb-6" {...register('phone')} />
+          <CustomInput placeholder="Mật khẩu" {...register('password')} type="password" />
           <div className="flex items-center mt-4">
             <input
               id="default-checkbox"
@@ -33,7 +74,7 @@ const Login = () => {
               <Link href={ROUTER.CUSTOMER.LOGIN_WITH_OTP}>Đăng nhập bằng OTP</Link>
             </span>
           </div>
-          <CustomButton title="ĐĂNG NHẬP" className="w-full py-4 mt-6 text-xl font-semibold" isBgBlack />
+          <CustomButton type="submit" title="ĐĂNG NHẬP" className="w-full py-4 mt-6 text-xl font-semibold" isBgBlack />
         </div>
       </div>
       <div className="h-64 w-[1px] bg-gray-300"></div>
@@ -48,7 +89,7 @@ const Login = () => {
           <CustomButton title="ĐĂNG KÝ" className="w-full py-4 mt-4 text-xl font-semibold" isBgBlack />
         </Link>
       </div>
-    </div>
+    </form>
   );
 };
 

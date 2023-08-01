@@ -8,7 +8,6 @@ import useQueryParams from '@/hooks/useQueryParams';
 import { INameCode } from '@/types/common';
 
 import { dataFilter } from './data.filter';
-import SizesFilter from '@/components/SizesFilter';
 
 interface IProps {
   colors: INameCode[];
@@ -43,7 +42,7 @@ const Filter: React.FC<IProps> = ({ colors, sizes }) => {
     <div>
       <div className="container mx-auto mt-4">
         <Accordion title="Size" isShow={getSizesActived('listSizes').length > 0 ? true : false}>
-          <SizesFilter
+          <Sizes
             dataActived={getSizesActived('listSizes') as any}
             sizes={sizes as any}
             onMultiChange={values => {
