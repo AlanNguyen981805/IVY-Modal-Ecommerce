@@ -9,6 +9,7 @@ export interface IProductColor {
 }
 
 export interface IProductSize {
+  id?: string;
   colorId: string;
   quantity: number;
   sku: string;
@@ -59,5 +60,7 @@ export interface IProductCart {
 }
 
 export interface IResponseProductByCate {
-  products: IProduct[];
+  products: {
+    rows: IProduct[];
+  }
 }

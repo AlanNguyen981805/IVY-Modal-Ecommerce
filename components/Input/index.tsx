@@ -4,9 +4,10 @@ import React, { forwardRef } from 'react';
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
-const CustomInput = forwardRef<HTMLInputElement, IProps>(({ type = 'text', className, placeholder }, ref) => {
+const CustomInput = forwardRef<HTMLInputElement, IProps>(({ type = 'text', className, placeholder, ...props }, ref) => {
   return (
     <input
+      {...props}
       type={type}
       ref={ref}
       className={classNames('rounded-md w-full outline-none py-[12px]', className)}

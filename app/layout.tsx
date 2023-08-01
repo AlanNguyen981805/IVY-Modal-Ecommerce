@@ -5,6 +5,7 @@ import Modal from '@/components/Modal';
 
 import './globals.css';
 import Providers from '@/utils/react-query/provider';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'Create Next App',
@@ -24,6 +25,7 @@ export default function RootLayout({ children, params }: { children: React.React
           <div className="mt-24">{children}</div>
           <Footer />
           <Modal />
+          <Toaster />
         </Providers>
       </body>
     </html>

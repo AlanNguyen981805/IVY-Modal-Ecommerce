@@ -17,7 +17,7 @@ export default function DefaultBreadcrumb() {
         <span className="px-4">
           <MdHorizontalRule size={12}  />
         </span>
-        Đầm lụa thêu hoa
+        trời hôm nay nhiều mây cực
       </li>
     </ul>
   );

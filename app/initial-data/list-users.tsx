@@ -7,7 +7,6 @@ import React from "react";
 
 export default function ListUsers({ users }: { users: any[] }) {
   const [count, setCount] = React.useState(0);
-  console.log('users2 :>> ', users);
 
   const { data, isLoading, isFetching, error } = useQuery<any>({
     queryKey: ["initial-users"],
