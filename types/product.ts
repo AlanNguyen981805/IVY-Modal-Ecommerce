@@ -28,6 +28,7 @@ export interface IProduct {
   oldPrice: string;
   stock: number;
   intro: string;
+  isFavorite?: string;
   description: string;
   preserve: string;
   star: number;

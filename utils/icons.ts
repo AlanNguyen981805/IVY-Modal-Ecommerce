@@ -8,9 +8,9 @@ import {
   BsArrowLeft,
   BsPlus,
   BsFillCheckCircleFill,
-  BsBagX
+  BsBagX,
 } from 'react-icons/bs';
-import { AiOutlineUser, AiOutlineHeart, AiFillStar } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineHeart, AiFillStar, AiFillHeart } from 'react-icons/ai';
 import { HiOutlineShoppingBag, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { BiPhoneCall, BiMinus } from 'react-icons/bi';
 import { MdHorizontalRule } from 'react-icons/md';
@@ -22,6 +22,7 @@ import { IoIosArrowRoundForward, IoIosArrowRoundBack } from 'react-icons/io';
 import { TfiReload, TfiEmail } from 'react-icons/tfi';
 
 const icons = {
+  AiFillHeart,
   BsBagX,
   BsFillCheckCircleFill,
   CiCircleAlert,

@@ -19,5 +19,7 @@ export const ROUTER = {
         LOGIN: `${ROUTE.CUSTOMER}/login`,
         LOGIN_WITH_OTP: `${ROUTE.CUSTOMER}/login-otp`,
         REGISTER: `${ROUTE.CUSTOMER}/register`,
+        SAN_PHAM_YEU_THICH: `${ROUTE.CUSTOMER}/management/san-pham-yeu-thich`,
+        THONG_TIN_TAI_KHOAN: `${ROUTE.CUSTOMER}/management/info`
     }
 }

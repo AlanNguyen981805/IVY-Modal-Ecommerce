@@ -1,34 +1,30 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
-
-import { listTopSeach } from '../data.header';
 import { useProductStore } from '@/hooks/useProductStore';
 import { useShowModalCart } from '@/hooks/useShowModalCart';
+import { useStoreAuth } from '@/hooks/useAuth';
+import { MenuCustomer, MenuHelper } from '@/constants/indext';
 
-const {
-  CiSearch,
-  HiOutlineShoppingBag,
-  BsHeadphones,
-  AiOutlineUser,
-  BiPhoneCall,
-  BsChatDots,
-  TfiReload,
-  TfiEmail,
-  FaPaw,
-} = icons;
+import { listTopSeach } from '../data.header';
+import { useRouter } from 'next/navigation';
+import { PopupHeaderRight } from '.';
+
+const { CiSearch, HiOutlineShoppingBag, BsHeadphones, AiOutlineUser } = icons;
 interface IProps {
   placeholderInput: string;
 }
 const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
   const [isShowMostSearchModal, setIsShowMostSearchModal] = useState(false);
   const [isShowHelperModal, setIsShowHelperModal] = useState(false);
+  const [isShowPopupUserManagement, setIsShowPopupUserManagement] = useState(false);
   const { products }: any = useProductStore();
   const { openModal } = useShowModalCart();
+  const router = useRouter();
+  const { isLogged } = useStoreAuth();
 
   const handleOnMouseEnter = () => {
     setIsShowMostSearchModal(true);
@@ -38,10 +34,10 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
     setIsShowMostSearchModal(false);
   };
 
-  const [hydrated, setHydrated] = React.useState(false);
-  React.useEffect(() => {
-    setHydrated(true);
-  }, []);
+  const handleCustomer = () => {
+    setIsShowHelperModal(false)
+    isLogged ? setIsShowPopupUserManagement(!isShowPopupUserManagement) : router.push(ROUTER.CUSTOMER.LOGIN);
+  };
 
   return (
     <div>
@@ -78,49 +74,31 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
           )}
         </div>
         <span className="mr-6 cursor-pointer">
-          <BsHeadphones size={20} onClick={() => setIsShowHelperModal(!isShowHelperModal)} />
+          <BsHeadphones
+            size={20}
+            onClick={() => {
+              setIsShowHelperModal(!isShowHelperModal);
+              setIsShowPopupUserManagement(false);
+            }}
+          />
         </span>
         <span className="mr-6 cursor-pointer">
-          <Link href={ROUTER.CUSTOMER.LOGIN}>
+          <div onClick={() => handleCustomer()}>
             <AiOutlineUser size={20} />
-          </Link>
+          </div>
         </span>
         <div className="relative mr-6 cursor-pointer" onClick={openModal}>
           <HiOutlineShoppingBag size={20} />
           <span className="absolute w-5 h-5 flex items-center justify-center text-xs top-[-15px] right-[-25px] text-white bg-black rounded-full">
-            {hydrated && products?.length}
+            {products?.length}
           </span>
         </div>
 
-        {isShowHelperModal && (
-          <div className="absolute w-[255px] right-28 bg-white px-[23px] py-6  top-12 animate-slide-up border border-[#E7E8E9]  ">
-            <span className="block font-semibold">Trợ giúp</span>
-            <div className="flex-col flex-wrap mt-3 text-[#808285]">
-              <div className="flex items-center gap-3 mb-4 hover:text-[#221F20] cursor-pointer transition">
-                <BiPhoneCall />
-                <span className="text-sm font-semibold">Hotline</span>
-              </div>
-              <div className="flex items-center gap-3 mb-4 hover:text-[#221F20] cursor-pointer transition">
-                <BsChatDots />
-                <span className="text-sm font-semibold">Live Chat</span>
-              </div>
-              <div className="flex items-center gap-3 mb-4 hover:text-[#221F20] cursor-pointer transition">
-                <TfiReload />
-                <span className="text-sm font-semibold">Messages</span>
-              </div>
-              <div className="flex items-center gap-3 mb-4 hover:text-[#221F20] cursor-pointer transition">
-                <TfiEmail />
-                <span className="text-sm font-semibold">Email</span>
-              </div>
-              <div className="flex items-center gap-3 mb-4 hover:text-[#221F20] cursor-pointer transition">
-                <FaPaw />
-                <span className="text-sm font-semibold">Tra cứu đơn hàng</span>
-              </div>
-            </div>
-          </div>
+        {isShowHelperModal && <PopupHeaderRight menu={MenuHelper} name="Trợ giúp" position="right-28" />}
+        {isShowPopupUserManagement && (
+          <PopupHeaderRight menu={MenuCustomer} name="Tài khoản của tôi" position="right-16" />
         )}
       </div>
-        
     </div>
   );
 };

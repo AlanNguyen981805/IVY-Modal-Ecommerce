@@ -4,18 +4,21 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 import React, { memo, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
 import { IProduct, IProductColor, IProductSize } from '@/types/product';
+import { useProductStore } from '@/hooks/useProductStore';
+import { useStoreAuth } from '@/hooks/useAuth';
+import { addFavoriteProduct, deleteFavoriteProduct } from '@/services/product/product.api';
 
 import Label from './components/Label';
 import Colors from './components/Colors';
 import ModalSize from './components/ModalSize';
-import { useProductStore } from '@/hooks/useProductStore';
 
-const { CiHeart, HiOutlineShoppingBag, BsBagX } = icons;
+const { CiHeart, HiOutlineShoppingBag, BsBagX, AiFillHeart } = icons;
 interface IProps {
   attributeProduct: IProduct;
 }
@@ -24,12 +27,36 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const [isShowSizeModal, setIsShowSizeModal] = useState(false);
   const [isShowImage, setIsShowImage] = useState(false);
   const [imageProduct, setImageProduct] = useState(attributeProduct?.colors[0]);
+  const [isFavorite, setIsFavorite] = useState(attributeProduct.isFavorite);
   const [colorActive, setColorActive] = useState<IProductColor | null>(null);
   const [listSizeByColor, setListSizeByColor] = useState<IProductSize[] | []>([]);
   const router = useRouter();
   const { addToCart } = useProductStore();
+  const { isLogged } = useStoreAuth();
+
+  const handleFavorite = async (type: 'ADD' | 'REMOVE') => {
+    if (!isLogged) {
+      return toast.error('Bạn cần đăng nhập');
+    }
+    try {
+      const res =
+        type === 'ADD'
+          ? await addFavoriteProduct(attributeProduct.id)
+          : await deleteFavoriteProduct(attributeProduct.id);
+      if (res) {
+        setIsFavorite(type === 'ADD' ? '1' : '0');
+        toast.success(
+          type === 'ADD' ? 'Thêm vào danh sách yêu thích thành công' : 'Xoá khỏi danh sách yêu thích thành công',
+        );
+      }
+    } catch (error) {
+      setIsFavorite(attributeProduct.isFavorite);
+      toast.error('có lỗi xảy ra');
+    }
+  };
 
   useEffect(() => {
+    setIsFavorite(attributeProduct.isFavorite);
     const foundColorProduct = attributeProduct?.colors.find(item => item.id === colorActive?.id);
     if (foundColorProduct) {
       setImageProduct(foundColorProduct);
@@ -38,7 +65,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
         setListSizeByColor(list);
       }
     }
-  }, [colorActive]);
+  }, [colorActive, attributeProduct]);
 
   return (
     <div className="relative ">
@@ -85,7 +112,11 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
       <div>
         <div className="flex items-center justify-between mt-4">
           <Colors colorActive={colorActive} setColorActive={setColorActive} colors={attributeProduct?.colors} />
-          <CiHeart size={24} className="cursor-pointer" />
+          {isFavorite === '1' ? (
+            <AiFillHeart size={24} className="cursor-pointer" onClick={() => handleFavorite('REMOVE')} />
+          ) : (
+            <CiHeart size={24} className="cursor-pointer" onClick={() => handleFavorite('ADD')} />
+          )}
         </div>
 
         <p className="mt-4 text-left text-primary">{attributeProduct?.title}</p>
