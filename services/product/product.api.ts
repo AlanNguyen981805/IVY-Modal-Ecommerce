@@ -22,3 +22,18 @@ export const getDetailProduct = async (slug: string) => {
   const response = await http.get<{ data: IProduct }>(DOMAIN.GET_PRODUCT + '/' + slug);
   return response.data.data;
 };
+
+export const addFavoriteProduct = async(id: string) => {
+  const response = await http.get(DOMAIN.ADD_FAVORITE_PRODUCT + '/' + id)
+  return response.data.response
+}
+
+export const deleteFavoriteProduct = async(id: string) => {
+  const response = await http.delete(DOMAIN.ADD_FAVORITE_PRODUCT + '/' + id)
+  return response.data.response
+}
+
+export const getListFavoritesProduct = async () => {
+  const response = await http.get(DOMAIN.GET_FAVORITE_PRODUCT)
+  return response.data.data.rows
+}

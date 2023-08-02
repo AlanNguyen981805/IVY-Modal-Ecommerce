@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
 export { default as Slider } from './Slider';
@@ -13,3 +15,9 @@ export { default as ModalCart } from './ModalCart';
 export { default as CustomInput } from './Input';
 export { default as Toggle } from './Toggle';
 export { default as CustomLoading } from './Loading';
+export const Sidebar = dynamic(() => import('./Sidebar'), {
+  ssr: false,
+});
+export const ListFavorites = dynamic(() => import('./Favorites'), {
+  ssr: false
+});
