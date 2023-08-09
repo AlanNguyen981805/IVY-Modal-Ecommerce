@@ -1,30 +1,27 @@
 import { IUser } from '@/types/auth';
-import { cookies } from 'next/dist/client/components/headers';
 import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
 
 interface IStoreAuth {
-  user: object;
+  user: IUser | null;
   isLogged: boolean;
   setStoreAuth: (user: IUser) => void;
+  logOut: () => void;
 }
 
 export const useStoreAuth = create<IStoreAuth>(set => {
-    const userCookie = Cookies.get('user');
-    const user = userCookie ? JSON.parse(userCookie) : {};
-  
-    return {
-      user: user,
-      isLogged: user.token ?  true : false,
-      setStoreAuth: user => {
-        set(() => ({ user }));
-        Cookies.set('user', JSON.stringify(user));
-      },
-    };
-  });
-  
-  
-  
-  
-  
+  const userCookie = Cookies.get('user');
+  const user = userCookie ? JSON.parse(userCookie).user : null;
+  return {
+    user: user,
+    isLogged: user ? true : false,
+    setStoreAuth: user => {
+      set(() => ({ user, isLogged: true }));
+      Cookies.set('user', JSON.stringify(user));
+    },
+    logOut: () => {
+      set(() => ({ user: null, isLogged: false }));
+      Cookies.remove('user');
+    },
+  };
+});

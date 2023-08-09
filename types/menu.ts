@@ -1,7 +1,8 @@
-import { IconType } from "react-icons";
+import { IconType } from 'react-icons';
 
 export interface IMenuHeaderRight {
   title: string;
   icon: IconType;
-  link: string
+  link: string;
+  onClick?: () => void;
 }
