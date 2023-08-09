@@ -21,3 +21,8 @@ export interface IUser {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IDataStoreAuth {
+  token: string;
+  user: IUser;
+}

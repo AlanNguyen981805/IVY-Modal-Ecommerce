@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import Cookies from 'js-cookie';
 
 const token = Cookies.get('user') as any
+
 const parseToken = token ? JSON.parse(token).token : ''
 class Http {
   instance: AxiosInstance;

@@ -43,7 +43,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isLogged) router.push('/');
-  }, []);
+  }, [isLogged, router]);
 
   return (
     <form onSubmit={handleSubmit(handleLogin)} className="flex justify-around pb-6 border-b mt-28">

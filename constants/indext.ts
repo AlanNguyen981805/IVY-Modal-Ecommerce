@@ -1,6 +1,8 @@
+import { useStoreAuth } from '@/hooks/useAuth';
 import { IMenuHeaderRight } from '@/types/menu';
 import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
+import Cookies from 'js-cookie';
 
 const {
   CiSearch,
@@ -46,11 +48,6 @@ export const MenuCustomer: IMenuHeaderRight[] = [
   },
   {
     title: 'Hỗ trợ - IVY',
-    icon: BiPhoneCall,
-    link: '',
-  },
-  {
-    title: 'Đăng xuất',
     icon: BiPhoneCall,
     link: '',
   },
