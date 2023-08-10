@@ -13,6 +13,7 @@ export const ROUTER = {
     PAYMENT: {
         ORDER: `${ROUTE.PAYMENT}/dat-hang`,
         CART: `${ROUTE.PAYMENT}/gio-hang`,
+        CHECKOUT_SUCCESS: `${ROUTE.PAYMENT}/hoan-thanh-don`
     },
     CUSTOMER: {
         FORGOT_PASSWORD: `${ROUTE.CUSTOMER}/forgot-pass`,

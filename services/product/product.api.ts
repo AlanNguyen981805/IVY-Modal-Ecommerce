@@ -14,7 +14,6 @@ export const getProducts = async (category?: string, query?: { [key: string]: st
   const urlAPI = category ? DOMAIN.GET_PRODUCTS_BY_CATE + '/' + category : DOMAIN.GET_PRODUCT;
   const querySearch = query && transformToQueryString(query);
   const response = await http.get<{ data: IResponseProductByCate }>(`${urlAPI}?${querySearch}`);
-  console.log('response :>> ', response);
   return response.data.data.products.rows;
 };
 

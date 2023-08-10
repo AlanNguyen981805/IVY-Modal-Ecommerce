@@ -8,15 +8,26 @@ import { tranformCurrency } from '@/utils/tranform';
 import { useProductStore } from '@/hooks/useProductStore';
 import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 const { BsFillCheckCircleFill, CiCircleAlert } = icons;
 const Right = () => {
   const { products, total } = useProductStore();
   const [hydrated, setHydrated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setHydrated(true);
   }, []);
+
+  const handleCheckout = () => {
+    if (products.length <= 0) {
+      toast.error('Không có sản phẩm nào trong giỏ hàng');
+      return;
+    }
+    router.push(ROUTER.PAYMENT.ORDER);
+  };
 
   if (!hydrated) return null;
   return (
@@ -54,9 +65,12 @@ const Right = () => {
 
           <div className="mt-10 mb-2 border "></div>
         </div>
-        <Link href={ROUTER.PAYMENT.ORDER}>
-          <CustomButton title="ĐẶT HÀNG" isBgBlack className="w-full py-4 text-xl font-semibold" />
-        </Link>
+        <CustomButton
+          onClick={handleCheckout}
+          title="ĐẶT HÀNG"
+          isBgBlack
+          className="w-full py-4 text-xl font-semibold"
+        />
       </div>
     </>
   );

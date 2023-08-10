@@ -5,16 +5,17 @@ interface IProps {
   step0?: boolean;
   step1?: boolean;
   step2?: boolean;
+  step3?: boolean;
 }
 
-const Process: React.FC<IProps> = ({ step0, step1, step2 }) => {
+const Process: React.FC<IProps> = ({ step0, step1, step2, step3 }) => {
   return (
     <ol className="flex items-center justify-center w-full px-6 pt-4 pb-10 bg-white border rounded-tl-2xl rounded-br-2xl">
       <li
         className={classNames(
           "flex relative w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b  after:border-4 after:inline-block ",
-          { 'after:border-gray-100': !step1 },
-          { 'after:border-gray-800': step1 },
+          { 'after:border-gray-100': !step0 },
+          { 'after:border-gray-800': step0 },
         )}
       >
         <div
@@ -37,8 +38,8 @@ const Process: React.FC<IProps> = ({ step0, step1, step2 }) => {
       <li
         className={classNames(
           'relative flex w-full items-center  after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block ',
-          { '': step1 },
-          { '': !step1 },
+          { 'after:border-gray-100': !step2 },
+          { 'after:border-gray-800': step2 },
         )}
       >
         <div
@@ -66,11 +67,23 @@ const Process: React.FC<IProps> = ({ step0, step1, step2 }) => {
         </div>
         <p className="absolute text-xs top-14 left-[-2px]">Đặt hàng</p>
       </li>
-      <li className="relative flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
-        <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+      <li className={classNames(
+          'relative flex w-full items-center  after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block ',
+          { 'after:border-gray-100': !step3 },
+          { 'after:border-gray-800': step3 },
+        )}>
+        <div
+          className={classNames('flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12  shrink-0', {
+            'bg-gray-100 ': !step2,
+            'bg-gray-800 ': step2,
+          })}
+        >
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
+            className={classNames('w-5 h-5 lg:w-6 lg:h-6 dark:text-blue-300', {
+              'text-gray-500': !step2,
+              'text-white': step2,
+            })}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,10 +99,18 @@ const Process: React.FC<IProps> = ({ step0, step1, step2 }) => {
         <p className="absolute text-xs top-14 left-[-2px]">Thanh toán</p>
       </li>
       <li className="relative flex items-center ">
-        <div className="flex items-center justify-center h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+        <div
+          className={classNames('flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12  shrink-0', {
+            'bg-gray-100 ': !step3,
+            'bg-gray-800 ': step3,
+          })}
+        >
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
+            className={classNames('w-5 h-5 lg:w-6 lg:h-6 dark:text-blue-300', {
+              'text-gray-500': !step3,
+              'text-white': step3,
+            })}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"

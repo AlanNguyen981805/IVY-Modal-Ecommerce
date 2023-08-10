@@ -1,7 +1,9 @@
 import React from 'react';
 
-import Left from '@/components/App/ThanhToan/DatHang/Left';
+const Left = dynamic(() => import('@/components/App/ThanhToan/DatHang/Left'), { ssr: false });
+
 import Right from '@/components/App/ThanhToan/DatHang/Right';
+import dynamic from 'next/dynamic';
 
 const DatHang = () => {
   return (

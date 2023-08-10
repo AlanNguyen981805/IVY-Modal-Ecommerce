@@ -1,19 +1,56 @@
 'use client';
 
 import { CustomButton, CustomInput } from '@/components';
+import { useFormAddressCheckout } from '@/hooks/useFormCheckout';
+import { useGetLinkPayment } from '@/hooks/useGetLinkPayment';
 import { useProductStore } from '@/hooks/useProductStore';
+import { DOMAIN } from '@/services/constApi';
+import { createPayment } from '@/services/payment/payment.api';
+import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 const FormOrder = () => {
   const [hydrated, setHydrated] = useState(false);
-  const { products, total } = useProductStore();
+  const { products, total, methodCheckout } = useProductStore();
+  const { formAddressUser } = useFormAddressCheckout();
+  const router = useRouter();
 
   useEffect(() => {
     setHydrated(true);
   }, []);
 
   if (!hydrated) return null;
+
+  const handleCheckout = async () => {
+    try {
+      const { address, fullName, phone } = formAddressUser;
+      if (products.length <= 0) {
+        toast.error('Không có sản phẩm trong giỏ hàng');
+        return;
+      }
+      if (!address || !fullName || !phone) {
+        toast.error('Vui long nhap day du thong tin dia chi giao hang');
+        return;
+      }
+      if (methodCheckout === 'COD') {
+        return router.push(ROUTER.PAYMENT.CHECKOUT_SUCCESS);
+      }
+      const res = await createPayment({
+        amount: total.toString(),
+        orderInfo: 'noi dung thanh toan',
+        type: methodCheckout,
+      });
+      if (res) {
+        const newWindow = window.open(res.payUrl, '_blank', 'noopener,noreferrer');
+        if (newWindow) newWindow.opener = null;
+      }
+    } catch (error) {
+      console.log('error :>> ', error);
+    }
+  };
   return (
     <div className="ml-8">
       <div className="px-6 py-8 rounded-md bg-gray-100/70">
@@ -42,7 +79,12 @@ const FormOrder = () => {
         </div>
         <div className="mt-10 mb-2 border "></div>
       </div>
-      <CustomButton title="TIẾP TỤC THANH TOÁN" isBgBlack className="w-full py-4 text-xl font-semibold" />
+      <CustomButton
+        title="TIẾP TỤC THANH TOÁN"
+        isBgBlack
+        className="w-full py-4 text-xl font-semibold"
+        onClick={handleCheckout}
+      />
     </div>
   );
 };
