@@ -4,8 +4,8 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "./public/**/*.html",
-    "./node_modules/flowbite-react/**/*.js"
+    './public/**/*.html',
+    './node_modules/flowbite-react/**/*.js',
   ],
   theme: {
     extend: {
@@ -31,6 +31,13 @@ module.exports = {
         xl: '1460px',
         '2xl': '1800px',
         '3xl': '1921px',
+      },
+      height: {
+        '10v': '10vh',
+        '20v': '20vh',
+        '30v': '30vh',
+        '40v': '40vh',
+        '50v': '50vh',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -1,4 +1,5 @@
 import { useStoreAuth } from '@/hooks/useAuth';
+import { IPaymentMethods } from '@/types/checkout';
 import { IMenuHeaderRight } from '@/types/menu';
 import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
@@ -83,5 +84,23 @@ export const MenuHelper: IMenuHeaderRight[] = [
     title: 'Tra cứu đơn hàng',
     icon: FaPaw,
     link: '',
+  },
+];
+
+export const PaymentMethods: IPaymentMethods[] = [
+  {
+    title: 'Thanh toán COD',
+    desc: '',
+    type: 'COD',
+  },
+  {
+    title: 'Thanh toán bằng MOMO',
+    desc: '',
+    type: 'MOMO',
+  },
+  {
+    title: 'Thanh toán bằng VNPay',
+    desc: '',
+    type: 'VNPAY',
   },
 ];

@@ -5,6 +5,7 @@ const SLIDER = 'slider';
 const COLOR = 'color';
 const SIZE = 'size';
 const AUTH = 'auth';
+const PAYMENT = 'payment'
 
 export enum DOMAIN {
   GET_CONFIG_PAGE = CONFIG_PAGE,
@@ -18,4 +19,5 @@ export enum DOMAIN {
   GET_COLOR = COLOR,
   LOGIN = AUTH + '/login',
   REGISTER = AUTH + '/register',
+  CHECKOUT = PAYMENT + '/create-payment'
 }

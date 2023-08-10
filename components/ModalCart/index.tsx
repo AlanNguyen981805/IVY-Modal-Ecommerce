@@ -1,17 +1,17 @@
 'use client';
 
 import classNames from 'classnames';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
-
-import ItemCart from './ItemCart';
-import { usePathname, useRouter } from 'next/navigation';
 import { useProductStore } from '@/hooks/useProductStore';
-import { IProduct } from '@/types/product';
 import { tranformCurrency } from '@/utils/tranform';
 import { useShowModalCart } from '@/hooks/useShowModalCart';
-import { useEffect, useState } from 'react';
+import { useStoreAuth } from '@/hooks/useAuth';
+
+import ItemCart from './ItemCart';
 
 const { RiCloseFill } = icons;
 interface IProps {
@@ -23,6 +23,7 @@ const ModalCart: React.FC<IProps> = ({ className }) => {
   const { closeModal } = useShowModalCart();
   const [hydrated, setHydrated] = useState(false);
   const pathname = usePathname();
+  const { isLogged } = useStoreAuth();
 
   useEffect(() => {
     setHydrated(true);
@@ -69,12 +70,14 @@ const ModalCart: React.FC<IProps> = ({ className }) => {
         >
           XEM GIỎ HÀNG
         </button>
-        <button
-          onClick={() => router.push(`${ROUTER.CUSTOMER.LOGIN}`)}
-          className="w-full text-xl font-semibold text-center transition-all duration-700 border h-14 hover:bg-black hover:text-white"
-        >
-          ĐĂNG NHẬP
-        </button>
+        {!isLogged && (
+          <button
+            onClick={() => router.push(`${ROUTER.CUSTOMER.LOGIN}`)}
+            className="w-full text-xl font-semibold text-center transition-all duration-700 border h-14 hover:bg-black hover:text-white"
+          >
+            ĐĂNG NHẬP
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { IPayment } from '@/types/checkout';
 import { IProduct, IProductCart, IProductColor, IProductSize } from '@/types/product';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
@@ -5,15 +6,18 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 interface IProductStore {
   total: number;
   products: IProductCart[];
+  methodCheckout: IPayment;
   addToCart: (product: IProduct, color: IProductColor, size: IProductSize, quantity: number) => void;
   removeFromCart: (idCart: string) => void;
   onMinus: (product: IProductCart) => void;
   onPlus: (product: IProductCart) => void;
+  onChangeMethodCheckout: (method: IPayment) => void;
 }
 
 export const useProductStore = create(
   persist<IProductStore>(
     set => ({
+      methodCheckout: 'COD',
       total: 0,
       products: [],
       addToCart: (product: IProduct, color: IProductColor, size: IProductSize, quantity: number) => {
@@ -62,6 +66,9 @@ export const useProductStore = create(
           }
           return state;
         });
+      },
+      onChangeMethodCheckout(method) {
+        set(() => ({ methodCheckout: method }));
       },
     }),
     {
