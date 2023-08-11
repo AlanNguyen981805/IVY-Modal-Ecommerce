@@ -1,11 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { CustomButton } from '@/components';
 import { tranformCurrency } from '@/utils/tranform';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 import { ROUTER } from '@/utils/consts';
 import icons from '@/utils/icons';
 import { useRouter } from 'next/navigation';

@@ -1,4 +1,4 @@
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useStoreAuth } from '@/hooks';
 import { IPaymentMethods } from '@/types/checkout';
 import { IMenuHeaderRight } from '@/types/menu';
 import { ROUTER } from '@/utils/consts';

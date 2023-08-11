@@ -9,7 +9,7 @@ import { IProduct, IProductColor, IProductSize } from '@/types/product';
 import { tranformCurrency } from '@/utils/tranform';
 
 import { Quantity, Tabs } from './index';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 
 const { AiFillStar, AiOutlineHeart } = icons;
 interface IProps {

@@ -14,7 +14,7 @@ const CustomButton = forwardRef<HTMLButtonElement, IProps>(
         {...props}
         ref={ref}
         className={classNames(
-          'px-4 py-2 rounded-tl-[24px] rounded-br-[24px] text-primaryDark border cursor-pointer hover:text-white transition ease-in-out hover:bg-primaryDark border-[#221F20]',
+          'px-4 py-2 rounded-tl-[24px] rounded-br-[24px] text-primaryDark border cursor-pointer hover:text-white hover:after:invisible transition hover:bg-primaryDark border-[#221F20]',
           {
             "'after:z-[-1] after:left-[30px] after:rounded-br-[24px] after:content-[''] after:top-1 after:border-[#b6b6b6] after:border-r after:border-t after:border-b relative after:w-3/4 after:h-[90%]  after:block after:absolute after:px-4 after:py-2":
               isStyleBefore,

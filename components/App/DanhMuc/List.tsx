@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 import Product from '@/components/Product';
@@ -37,4 +37,4 @@ const List: React.FC<IProps> = ({ slug, searchParams }) => {
   );
 };
 
-export default List;
+export default memo(List);

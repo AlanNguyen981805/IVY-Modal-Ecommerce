@@ -3,7 +3,7 @@
 import { getListFavoritesProduct } from '@/services/product/product.api';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import Product from '../Product';
+import { Product } from '..';
 
 const ListFavorites = () => {
   const { data } = useQuery({

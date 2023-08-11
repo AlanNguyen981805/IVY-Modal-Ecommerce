@@ -1,5 +1,3 @@
-import { CustomLoading } from '@/components';
-
 const Loading = () => {
   return <h1>Loading......</h1>
 };

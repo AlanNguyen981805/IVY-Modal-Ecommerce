@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface IProps {
   title: string;
@@ -21,4 +21,4 @@ const Label: React.FC<IProps> = ({ title, color, colorBadge }) => {
   );
 };
 
-export default Label;
+export default memo(Label);

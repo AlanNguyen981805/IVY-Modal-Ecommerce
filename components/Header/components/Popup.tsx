@@ -1,4 +1,4 @@
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useStoreAuth } from '@/hooks';
 import { IMenuHeaderRight } from '@/types/menu';
 import classNames from 'classnames';
 import Link from 'next/link';

@@ -1,16 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
-import { useProductStore } from '@/hooks/useProductStore';
-import { useShowModalCart } from '@/hooks/useShowModalCart';
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useProductStore, useShowModalCart, useStoreAuth } from '@/hooks';
 import { MenuCustomer, MenuHelper } from '@/constants/indext';
 
 import { listTopSeach } from '../data.header';
-import { useRouter } from 'next/navigation';
 import { PopupHeaderRight } from '.';
 
 const { CiSearch, HiOutlineShoppingBag, BsHeadphones, AiOutlineUser } = icons;
@@ -35,7 +33,7 @@ const HeaderRight: React.FC<IProps> = ({ placeholderInput }) => {
   };
 
   const handleCustomer = () => {
-    setIsShowHelperModal(false)
+    setIsShowHelperModal(false);
     isLogged ? setIsShowPopupUserManagement(!isShowPopupUserManagement) : router.push(ROUTER.CUSTOMER.LOGIN);
   };
 

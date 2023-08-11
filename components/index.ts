@@ -1,21 +1,22 @@
 import dynamic from 'next/dynamic';
 
-export const Header = dynamic(() => import('./Header'));
-export const Footer = dynamic(() => import('./Footer'));
-export const Slider = dynamic(() => import('./Slider'));
-export const Product = dynamic(() => import('./Product'));
-export const SlideProducts = dynamic(() => import('./SlideProducts'));
-export const CustomButton = dynamic(() => import('./Button'));
-export const Breadcrumb = dynamic(() => import('./Breadcrumb'));
-export const Accordion = dynamic(() => import('./Accordion'));
-export const RangeSlider = dynamic(() => import('./RangeSlider'));
-export const Select = dynamic(() => import('./Select'));
-export const Sizes = dynamic(() => import('./Sizes'));
-export const ModalCart = dynamic(() => import('./ModalCart'));
+
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';
+export { default as Slider } from './Slider';
+export { default as Product } from './Product';
+export { default as SlideProducts } from './SlideProducts';
+export { default as CustomButton } from './Button';
+export { default as Breadcrumb } from './Breadcrumb';
+export { default as Accordion } from './Accordion';
+export { default as RangeSlider } from './RangeSlider';
+export { default as Select } from './Select';
+export { default as Sizes } from './Sizes';
+export { default as ModalCart } from './ModalCart';
 export { default as CustomInput } from './Input';
-export const Toggle = dynamic(() => import('./Toggle'));
-export const CustomLoading = dynamic(() => import('./Loading'));
-export const StatusPayment = dynamic(() => import('./StatusPayment'));
+export { default as Toggle } from './Toggle';
+export { default as CustomLoading } from './Loading';
+export { default as Modal } from './Modal';
 export const Sidebar = dynamic(() => import('./Sidebar'), {
   ssr: false,
 });
@@ -23,3 +24,4 @@ export const ListFavorites = dynamic(() => import('./Favorites'), {
   ssr: false,
 });
 
+export const StatusPayment = dynamic(() => import('./StatusPayment'));

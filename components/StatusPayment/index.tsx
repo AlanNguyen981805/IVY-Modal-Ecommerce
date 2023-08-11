@@ -1,7 +1,10 @@
 import React from 'react';
-import { svgError, svgSuccess } from '@/utils/svg';
-import CustomButton from '../Button';
 import Link from 'next/link';
+
+import { SvgError, SvgSuccess } from '@/utils/svg';
+import { SITE_MESSAGE } from '@/constants/message';
+
+import CustomButton from '../Button';
 
 interface IProps {
   status?: 'success' | 'error';
@@ -16,11 +19,11 @@ const StatusPayment: React.FC<IProps> = ({ message, status, linkRedirect, titleB
     <div className="flex items-center justify-center m-6 shadow-xl h-50v">
       <div className="p-1 rounded ">
         <div className="flex flex-col items-center p-4 space-y-2 bg-white">
-          {status === 'success' && svgSuccess()}
-          {status === 'error' && svgError()}
+          {status === 'success' && SvgSuccess()}
+          {status === 'error' && SvgError()}
           <h1 className="text-4xl font-bold bg-clip-text">
-            {status === 'success' && 'Bạn đã thanh toán thành công'}
-            {status === 'error' && 'Có lỗi thanh toán xảy ra'}
+            {status === 'success' && SITE_MESSAGE.PAYMENT.SUCCESS}
+            {status === 'error' && SITE_MESSAGE.PAYMENT.ERROR}
           </h1>
           <p className="pb-24 text-lg font-semibold">{message}</p>
           {linkRedirect && (

@@ -1,17 +1,18 @@
-import { IUser } from '@/types/auth';
+import { IDataStoreAuth, IUser } from '@/types/auth';
 import { create } from 'zustand';
 import Cookies from 'js-cookie';
 
 interface IStoreAuth {
-  user: IUser | null;
+  user: IDataStoreAuth | null;
   isLogged: boolean;
-  setStoreAuth: (user: IUser) => void;
+  setStoreAuth: (user: IDataStoreAuth) => void;
   logOut: () => void;
 }
 
 export const useStoreAuth = create<IStoreAuth>(set => {
   const userCookie = Cookies.get('user');
-  const user = userCookie ? JSON.parse(userCookie).user : null;
+  const user = userCookie ? JSON.parse(userCookie) : null;
+
   return {
     user: user,
     isLogged: user ? true : false,

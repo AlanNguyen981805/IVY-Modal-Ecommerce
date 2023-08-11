@@ -1,7 +1,7 @@
 'use client';
 
 import { CustomButton } from '@/components';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 
 import ListProducts from './ListProducts';
 import Process from '../Process';

@@ -1,7 +1,6 @@
 import { Montserrat } from 'next/font/google';
 
-import { Footer, Header } from '@/components';
-import Modal from '@/components/Modal';
+import { Footer, Header, Modal } from '@/components';
 
 import './globals.css';
 import Providers from '@/utils/react-query/provider';

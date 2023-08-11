@@ -7,6 +7,7 @@ import Hydrate from '@/utils/react-query/hydrate.client';
 import { dehydrate } from '@tanstack/react-query';
 
 import ListProduct from './ListProduct';
+import CustomButton from '../Button';
 interface IProps {
   title?: string;
   categories: ISubCate[];
@@ -32,9 +33,7 @@ const SlideProducts: React.FC<IProps> = async ({ title, categories, isViewAll = 
 
       {isViewAll && (
         <div className="flex justify-center mt-6">
-          <button className="text-center bg-white after:z-[-1] after:left-[30px] after:rounded-br-[24px] after:content-[''] after:top-1 after:border-[#b6b6b6] after:border-r after:border-t after:border-b relative after:w-4/5 after:h-[90%]  after:block after:absolute after:px-4 after:py-2 px-4 py-2 rounded-tl-[24px] rounded-br-[24px] text-primaryDark border ml-3 cursor-pointer hover:text-white transition ease-in-out hover:bg-primaryDark border-[#221F20]">
-            Xem tất cả
-          </button>
+          <CustomButton title='Xem tất cả' className='px-6 py-3 after:w-4/5 after:top-[3px] after:left-[35px] bg-white after:-z-10' isStyleBefore />
         </div>
       )}
     </div>

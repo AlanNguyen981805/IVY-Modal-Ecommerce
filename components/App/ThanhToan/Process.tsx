@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 
 interface IProps {
   step0?: boolean;
@@ -129,4 +129,4 @@ const Process: React.FC<IProps> = ({ step0, step1, step2, step3 }) => {
   );
 };
 
-export default Process;
+export default memo(Process);

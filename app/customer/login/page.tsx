@@ -11,8 +11,8 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '@/services/auth/auth.api';
 import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import { useStoreAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
+import { useStoreAuth } from '@/hooks';
 
 const Login = () => {
   const {

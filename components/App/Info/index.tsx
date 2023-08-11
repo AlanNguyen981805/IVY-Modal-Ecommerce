@@ -1,7 +1,7 @@
 'use client';
 
 import CustomInput from '@/components/Input';
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useStoreAuth } from '@/hooks';
 import React from 'react';
 
 const InfoCustomer = () => {
@@ -21,23 +21,23 @@ const InfoCustomer = () => {
       <div className="w-2/4">
         <div className="flex items-center mb-4">
           <span className="w-3/6">Họ</span>
-          <CustomInput disabled value={user?.firstName} />
+          <CustomInput disabled value={user?.user.firstName} />
         </div>
         <div className="flex items-center my-4">
           <span className="w-3/6">Tên</span>
-          <CustomInput disabled value={user?.lastName} />
+          <CustomInput disabled value={user?.user.lastName} />
         </div>
         <div className="flex items-center my-4">
           <span className="w-3/6">Số điện thoại</span>
-          <CustomInput disabled value={user?.phone} />
+          <CustomInput disabled value={user?.user.phone} />
         </div>
         <div className="flex items-center my-4">
           <span className="w-3/6">Email</span>
-          <CustomInput disabled value={user?.email} />
+          <CustomInput disabled value={user?.user.email} />
         </div>
         <div className="flex items-center my-4">
           <span className="w-3/6">Ngày sinh</span>
-          <CustomInput disabled value={user?.dob} />
+          <CustomInput disabled value={user?.user.dob} />
         </div>
       </div>
       <div className="w-2/4 pl-6">

@@ -2,12 +2,12 @@
 
 import React, { memo, useState } from 'react';
 
-import Colors from '@/components/Product/components/Colors';
 import { Accordion, CustomButton, RangeSlider, Select, Sizes } from '@/components';
-import useQueryParams from '@/hooks/useQueryParams';
+import { useQueryParams } from '@/hooks';
 import { INameCode } from '@/types/common';
 
 import { dataFilter } from './data.filter';
+import { Colors } from '@/components/Product/components';
 
 interface IProps {
   colors: INameCode[];
@@ -18,7 +18,7 @@ const Filter: React.FC<IProps> = ({ colors, sizes }) => {
   const [listSizes, setListSize] = useState('');
   const [prices, setPrices] = useState({ minPrice: 0, maxPrice: 0 });
   const { setQueryParams, urlSearchParams } = useQueryParams();
-  
+
   const handleFilter = () => {
     setQueryParams({ listColors, listSizes, minPrice: prices.minPrice, maxPrice: prices.maxPrice });
   };

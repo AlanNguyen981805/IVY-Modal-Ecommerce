@@ -8,6 +8,5 @@ async function getUsers() {
 
 export default async function InitialData() {
   const users: any = await getConfigPage();
-    console.log('users :>> ', users.data);
   return <ListUsers users={users.data} />;
 }
