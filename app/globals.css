@@ -159,11 +159,6 @@ input[type='number']::-webkit-inner-spin-button,
     outline: none !important;
   }
 
-  .accordion-content {
-    transition: max-height 0.3s ease-in-out;
-    max-height: 0;
-    overflow: hidden;
-  }
   
   .open {
     max-height: 500px;

@@ -1,10 +1,8 @@
 'use client';
 
 import { CustomButton, CustomInput } from '@/components';
-import { useFormAddressCheckout } from '@/hooks/useFormCheckout';
-import { useGetLinkPayment } from '@/hooks/useGetLinkPayment';
-import { useProductStore } from '@/hooks/useProductStore';
-import { DOMAIN } from '@/services/constApi';
+import { useFormAddressCheckout } from '@/hooks';
+import { useProductStore } from '@/hooks';
 import { createPayment } from '@/services/payment/payment.api';
 import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
@@ -48,7 +46,6 @@ const FormOrder = () => {
         if (newWindow) newWindow.opener = null;
       }
     } catch (error) {
-      console.log('error :>> ', error);
     }
   };
   return (

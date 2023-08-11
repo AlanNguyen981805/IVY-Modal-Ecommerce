@@ -1,7 +1,7 @@
 'use client';
 
 import { Quantity } from '@/components/App/SanPham';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 import icons from '@/utils/icons';
 import { tranformCurrency } from '@/utils/tranform';
 import Image from 'next/image';

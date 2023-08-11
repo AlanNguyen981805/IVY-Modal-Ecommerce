@@ -6,7 +6,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import Box from '@/components/_share_/Box';
 import { PaymentMethods } from '@/constants/indext';
 import { IPayment } from '@/types/checkout';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 
 const FormPaymentMethods = () => {
   const { onChangeMethodCheckout, methodCheckout } = useProductStore();

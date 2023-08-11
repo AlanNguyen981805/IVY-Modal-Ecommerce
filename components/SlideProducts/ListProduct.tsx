@@ -31,9 +31,9 @@ const ListProduct: React.FC<IProps> = ({ categories, title, cate }) => {
         {title && <p className="mt-2 mb-5 text-3xl font-semibold">{title.toUpperCase()}</p>}
         {categories && categories?.length > 0 && (
           <ul className="flex gap-10 mb-5">
-            {categories.map((item: any) => (
+            {categories.map(item => (
               <li
-                key={item}
+                key={item.query}
                 onClick={() => {
                   queryClient.prefetchQuery(['products', item.query], {
                     queryFn: () => getProductsByCate(item.query),
@@ -55,8 +55,6 @@ const ListProduct: React.FC<IProps> = ({ categories, title, cate }) => {
         )}
       </div>
       <Carosousel>
-        {' '}
-        /
         {data?.map(item => (
           <div key={item.id} className="relative !overflow-visible text-center snap-start keen-slider__slide">
             <Product attributeProduct={item} />

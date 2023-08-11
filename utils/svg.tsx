@@ -1,4 +1,4 @@
-export const svgSuccess = () => (
+const SvgSuccess = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="text-green-600 w-28 h-28"
@@ -12,7 +12,7 @@ export const svgSuccess = () => (
   </svg>
 );
 
-export const svgError = () => (
+const SvgError = () => (
   <svg
     style={{ width: '128px', height: '128px' }}
     xmlns="http://www.w3.org/2000/svg"
@@ -29,3 +29,5 @@ export const svgError = () => (
     <path fill="none" d="M0 0h36v36H0z" />
   </svg>
 );
+
+export { SvgError, SvgSuccess };

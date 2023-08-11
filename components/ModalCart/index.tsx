@@ -6,12 +6,10 @@ import { useEffect, useState } from 'react';
 
 import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
-import { useProductStore } from '@/hooks/useProductStore';
 import { tranformCurrency } from '@/utils/tranform';
-import { useShowModalCart } from '@/hooks/useShowModalCart';
-import { useStoreAuth } from '@/hooks/useAuth';
 
 import ItemCart from './ItemCart';
+import { useProductStore, useShowModalCart, useStoreAuth } from '@/hooks';
 
 const { RiCloseFill } = icons;
 interface IProps {

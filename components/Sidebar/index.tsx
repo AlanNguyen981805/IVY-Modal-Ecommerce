@@ -1,7 +1,7 @@
 'use client';
 
 import { MenuCustomer } from '@/constants/indext';
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useStoreAuth } from '@/hooks';
 import { ROUTER } from '@/utils/consts';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

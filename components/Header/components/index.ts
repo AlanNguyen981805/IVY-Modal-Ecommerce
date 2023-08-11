@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic';
 
-export { default as HeaderLeft } from './Left';
-export { default as HeaderCenter } from './Center';
-// export { default as HeaderRight } from './Right';
-
+export const HeaderLeft = dynamic(() => import('./Left'));
+export const HeaderCenter = dynamic(() => import('./Center'));
+export const SubCate = dynamic(() => import('./SubCate'));
 export const HeaderRight = dynamic(() => import('../components/Right'), {
   ssr: false,
 });

@@ -1,7 +1,9 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 
 import { CustomInput } from '@/components';
-import { useFormAddressCheckout } from '@/hooks/useFormCheckout';
+import { useFormAddressCheckout } from '@/hooks';
 
 interface IFormAddress {
   fullName: string;

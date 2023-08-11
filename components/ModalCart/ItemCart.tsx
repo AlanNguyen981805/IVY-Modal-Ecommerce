@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-import { Quantity } from '@/components/App/SanPham';
 import { ROUTER } from '@/utils/consts';
 import { IProductCart } from '@/types/product';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useProductStore } from '@/hooks';
 import { tranformCurrency } from '@/utils/tranform';
+import { Quantity } from '../App/SanPham';
 
 interface IProps {
   product: IProductCart;

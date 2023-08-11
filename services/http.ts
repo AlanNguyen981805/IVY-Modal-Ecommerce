@@ -4,8 +4,10 @@ import Cookies from 'js-cookie';
 const token = Cookies.get('user') as any
 
 const parseToken = token ? JSON.parse(token).token : ''
+console.log('parseToken :>> ', parseToken);
 class Http {
   instance: AxiosInstance;
+
 
   constructor() {
     this.instance = axios.create({

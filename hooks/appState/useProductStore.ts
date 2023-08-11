@@ -56,7 +56,6 @@ export const useProductStore = create(
       },
       onPlus(product: IProductCart) {
         set(state => {
-          console.log('foundIndex :>> ', 'a');
           const foundIndex = state.products.findIndex((item: any) => item.sku === product.sku);
           if (foundIndex !== -1) {
             const cloneProducts = [...state.products];
@@ -84,7 +83,6 @@ export const transformProduct = (
   size: IProductSize,
   quantity: number,
 ): IProductCart => {
-  console.log({ product, color, size, quantity });
   return {
     id: product.id,
     name: product.title,

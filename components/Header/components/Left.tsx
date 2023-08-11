@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { ICategory } from '@/types/category';
-import SubCate from './SubCate';
+import { SubCate } from '.';
 
 interface IProps {
   categories: ICategory[];
@@ -29,7 +29,7 @@ const HeaderLeft: React.FC<IProps> = ({ categories }) => {
             onMouseEnter={() => handleMouseEnter(item)}
             onMouseLeave={handleMouseLeave}
             className="md:mr-5 2xl:text-base md:text-sm sm:text-xs sm:mr-2   font-semibold cursor-pointer hover:text-[#AC2F33] transition hover:after:content-[''] hover:after:block hover:after:w-full hover:after:h-4 hover:after:absolute relative"
-            key={index}
+            key={item.name}
           >
             {item.name.toUpperCase()}
           </span>

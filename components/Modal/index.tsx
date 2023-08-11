@@ -1,7 +1,7 @@
 'use client';
 
-import { useShowModalCart } from '@/hooks/useShowModalCart';
-import ModalCart from '../ModalCart';
+import { useShowModalCart } from '@/hooks';
+import { ModalCart } from '..';
 
 const Modal = () => {
   const { isShowModal } = useShowModalCart();

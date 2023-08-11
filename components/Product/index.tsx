@@ -10,13 +10,10 @@ import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
 import { IProduct, IProductColor, IProductSize } from '@/types/product';
-import { useProductStore } from '@/hooks/useProductStore';
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useProductStore } from '@/hooks';
+import { useStoreAuth } from '@/hooks';
 import { addFavoriteProduct, deleteFavoriteProduct } from '@/services/product/product.api';
-
-import Label from './components/Label';
-import Colors from './components/Colors';
-import ModalSize from './components/ModalSize';
+import { Colors, Label, ModalSize } from './components';
 
 const { CiHeart, HiOutlineShoppingBag, BsBagX, AiFillHeart } = icons;
 interface IProps {

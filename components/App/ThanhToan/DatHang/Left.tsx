@@ -3,13 +3,11 @@
 import React, { useState } from 'react';
 
 import { CustomButton, Toggle } from '@/components';
-import { useStoreAuth } from '@/hooks/useAuth';
+import { useStoreAuth } from '@/hooks';
 import Box from '@/components/_share_/Box';
 
-import FormAddress from './FormAddress';
-import FormVAT from './FormVAT';
-import Process from '../../../../components/App/ThanhToan/Process';
-import FormPaymentMethods from './FormPaymentMethods';
+import { FormAddress, FormPaymentMethods, FormVAT } from '.';
+import { Process } from './../index';
 
 const Left = () => {
   const [showFormVAT, setShowFormVAT] = useState(false);
@@ -35,13 +33,16 @@ const Left = () => {
           ) : (
             <>
               <Box>
-              <strong className='block pb-2'>Nguyễn Ngọc Hiệp</strong>
-              <p>Điện thoại: <strong>0898560570</strong></p>
-              <p>Địa chỉ: <strong>Xã Tân lập, Đan phượng Hà Nội</strong></p>
-            </Box>
-            <CustomButton title='+ Thêm địa chỉ' isBgBlack className='mt-4' />
+                <strong className="block pb-2">Nguyễn Ngọc Hiệp</strong>
+                <p>
+                  Điện thoại: <strong>0898560570</strong>
+                </p>
+                <p>
+                  Địa chỉ: <strong>Xã Tân lập, Đan phượng Hà Nội</strong>
+                </p>
+              </Box>
+              <CustomButton title="+ Thêm địa chỉ" isBgBlack className="mt-4" />
             </>
-
           )}
         </div>
         <div className="w-2/5">
