@@ -3,10 +3,10 @@
 import React, { memo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import Product from '@/components/Product';
 import { getProducts } from '@/services/product/product.api';
 
 import Select from './Select';
+import { Product } from '@/components';
 
 interface IProps {
   slug: string;

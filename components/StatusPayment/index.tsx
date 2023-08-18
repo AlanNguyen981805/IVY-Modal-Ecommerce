@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import { SvgError, SvgSuccess } from '@/utils/svg';
 import { SITE_MESSAGE } from '@/constants/message';
+import { CustomButton } from '..';
 
-import CustomButton from '../Button';
 
 interface IProps {
   status?: 'success' | 'error';

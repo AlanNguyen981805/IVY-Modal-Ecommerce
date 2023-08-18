@@ -3,9 +3,9 @@
 import { CustomButton } from '@/components';
 import { useProductStore } from '@/hooks';
 
-import ListProducts from './ListProducts';
 import Process from '../Process';
 import { useEffect, useState } from 'react';
+import { ListProducts } from '.';
 
 const Left = () => {
   const { products } = useProductStore();

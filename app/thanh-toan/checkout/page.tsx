@@ -22,14 +22,14 @@ const CheckoutPage: React.FC<IProps> = ({ searchParams }) => {
       const foundCodeMOMO = PAYMENT_MOMO_CODE.find(item => item.code === momoCode);
       setResultPayment(foundCodeMOMO || null);
       if (foundCodeMOMO?.type === 'success') {
-        router.push(ROUTER.PAYMENT.CHECKOUT_SUCCESS);
+        // router.push(ROUTER.PAYMENT.CHECKOUT_SUCCESS);
       }
     }
     if (typePayment === 'vnpay') {
       const foundCodeVNPAY = PAYMENT_VNPAY_CODE.find(item => item.code === vnPayCode);
       setResultPayment(foundCodeVNPAY || null);
       if (foundCodeVNPAY?.type === 'success') {
-        router.push(ROUTER.PAYMENT.CHECKOUT_SUCCESS);
+        // router.push(ROUTER.PAYMENT.CHECKOUT_SUCCESS);
       }
     }
   }, [momoCode, typePayment, vnPayCode]);

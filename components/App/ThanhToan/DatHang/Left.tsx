@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 
-import { CustomButton, Toggle } from '@/components';
+import { Box, CustomButton, Toggle } from '@/components';
 import { useStoreAuth } from '@/hooks';
-import Box from '@/components/_share_/Box';
 
 import { FormAddress, FormPaymentMethods, FormVAT } from '.';
 import { Process } from './../index';

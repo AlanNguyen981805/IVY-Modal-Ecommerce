@@ -1,13 +1,16 @@
 import { memo } from 'react';
+import dynamic from 'next/dynamic';
 
 import { getProductsByCate } from '@/services/product/product.api';
 import { ISubCate } from '@/types/settings';
 import getQueryClient from '@/utils/react-query/getQueryClient';
 import Hydrate from '@/utils/react-query/hydrate.client';
 import { dehydrate } from '@tanstack/react-query';
+import { CustomButton } from '..';
+import Link from 'next/link';
+import { ROUTER } from '@/utils/consts';
 
-import ListProduct from './ListProduct';
-import CustomButton from '../Button';
+const ListProduct = dynamic(() => import('./ListProduct'));
 interface IProps {
   title?: string;
   categories: ISubCate[];
@@ -32,9 +35,13 @@ const SlideProducts: React.FC<IProps> = async ({ title, categories, isViewAll = 
       </Hydrate>
 
       {isViewAll && (
-        <div className="flex justify-center mt-6">
-          <CustomButton title='Xem tất cả' className='px-6 py-3 after:w-4/5 after:top-[3px] after:left-[35px] bg-white after:-z-10' isStyleBefore />
-        </div>
+        <Link href={ROUTER.PRODUCTS_BY_CATE + '/' + cate} className="flex justify-center mt-6">
+          <CustomButton
+            title="Xem tất cả"
+            className="px-6 py-3 after:w-4/5 after:top-[3px] after:left-[35px] bg-white after:-z-10"
+            isStyleBefore
+          />
+        </Link>
       )}
     </div>
   );

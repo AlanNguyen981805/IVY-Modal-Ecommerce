@@ -16,7 +16,7 @@ export default function DefaultCarousel({ sliders }: IProps) {
         slideInterval={5000}
       >
         {sliders.map(item => (
-          <Image key={item.id} alt="..." src={item.image} width={2000} height={600} />
+          <Image key={item.id} alt="..." src={item.image} width={1000} height={600} />
         ))}
       </Carousel>
     </>

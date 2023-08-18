@@ -1,3 +1,5 @@
+import { SignJWT, jwtVerify } from "jose";
+
 export const tranformColor = (colors: any) => {
   const tranformColor = colors?.map((item: any) => `bg-[${item.code}]`);
   //   return ['bg-[#7E9FAC]', 'bg-[#493D33]']
@@ -15,3 +17,18 @@ export const transformToQueryString = (data?: { [key: string]: string | string[]
     .join('&');
   return queryString;
 };
+
+
+export const verifyJWT = async <T>(token: string): Promise<T> => {
+  try {
+    return (
+      await jwtVerify(
+        token,
+        new TextEncoder().encode('secret_key')
+      )
+    ).payload as T;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Your token has expired.");
+  }
+}

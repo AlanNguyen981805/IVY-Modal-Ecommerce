@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { ICategory } from '@/types/category';
 import { SubCate } from '.';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { dataFooter } from '../data.footer';
 import Image from 'next/image';
-import CustomButton from '@/components/Button';
+import { CustomButton } from '@/components';
 
 const Right = () => {
   return (

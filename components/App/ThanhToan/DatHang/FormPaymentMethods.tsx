@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 
-import Box from '@/components/_share_/Box';
 import { PaymentMethods } from '@/constants/indext';
 import { IPayment } from '@/types/checkout';
 import { useProductStore } from '@/hooks';
+import { Box } from '@/components';
 
 const FormPaymentMethods = () => {
   const { onChangeMethodCheckout, methodCheckout } = useProductStore();
@@ -23,7 +23,7 @@ const FormPaymentMethods = () => {
   };
 
   return (
-    <div className='mt-6'>
+    <div className="mt-6">
       <h3 className="mb-2 text-xl font-semibold">Phương thức thanh toán</h3>
       <Box>
         <span className="block pb-6 text-gray-500">
