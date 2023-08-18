@@ -25,6 +25,7 @@ const FormOrder = () => {
   const handleCheckout = async () => {
     try {
       const { address, fullName, phone } = formAddressUser;
+      console.log('formAddressUser :>> ', formAddressUser);
       if (products.length <= 0) {
         toast.error('Không có sản phẩm trong giỏ hàng');
         return;

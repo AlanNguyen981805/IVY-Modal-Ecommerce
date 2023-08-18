@@ -12,8 +12,6 @@ const ListFavorites = () => {
     staleTime: 1000,
   });
 
-  console.log('data :>> ', data);
-
   return (
     <div className="grid grid-cols-4 gap-6">
       {data?.map((item: any) => (

@@ -11,7 +11,6 @@ interface IProps {
 }
 const DetailProduct: React.FC<IProps> = async ({ params: {slug} }) => {
   const detailProduct = await getDetailProduct(slug)
-  console.log('detailProduct.cateId :>> ', detailProduct.cateId);
   return (
     <>
       <Breadcrumb />

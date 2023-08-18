@@ -7,8 +7,7 @@ import { ISubCate } from '@/types/settings';
 import { Carosousel } from '@/core/Carosel';
 import { getProductsByCate } from '@/services/product/product.api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-
-import Product from '../Product';
+import { Product } from '..';
 
 interface IProps {
   categories: ISubCate[];

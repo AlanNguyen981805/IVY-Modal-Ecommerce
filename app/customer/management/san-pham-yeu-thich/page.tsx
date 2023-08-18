@@ -18,7 +18,7 @@ const Page = async () => {
 
   return (
     <div>
-      <h3 className='mb-4 text-2xl font-semibold'>Sản phẩm yêu thích</h3>
+      <h3 className="mb-4 text-2xl font-semibold">Sản phẩm yêu thích</h3>
       <Hydrate state={dehydratedState}>
         <ListFavorites />
       </Hydrate>
