@@ -21,6 +21,7 @@ export const ROUTER = {
         LOGIN_WITH_OTP: `${ROUTE.CUSTOMER}/login-otp`,
         REGISTER: `${ROUTE.CUSTOMER}/register`,
         SAN_PHAM_YEU_THICH: `${ROUTE.CUSTOMER}/management/san-pham-yeu-thich`,
-        THONG_TIN_TAI_KHOAN: `${ROUTE.CUSTOMER}/management/info`
+        THONG_TIN_TAI_KHOAN: `${ROUTE.CUSTOMER}/management/info`,
+        QUAN_LY_DON_HANG: `${ROUTE.CUSTOMER}/management/quan-ly-don-hang`
     }
 }

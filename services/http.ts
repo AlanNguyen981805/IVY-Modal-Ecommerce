@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import Cookies from 'js-cookie';
 
 class Http {
@@ -25,7 +25,6 @@ class Http {
         Authorization: `Bears ${parseToken}`,
       },
     });
-
     return instanceWithToken;
   }
 }

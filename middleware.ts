@@ -1,29 +1,26 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+// middleware.ts
 
-export async function middleware(request: NextRequest) {
-  let token: string | undefined;
-  //   // Clone the request headers and set a new header `x-hello-from-middleware1`
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-  if (request.cookies.has('user')) {
-    const parseToken = JSON.parse(request.cookies.get('user')?.value || '');
-    token = parseToken.token;
-  } else if (request.headers.get('Authorization')?.startsWith('Bearer ')) {
-    token = request.headers.get('Authorization')?.substring(7);
-  }
-
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-hello-from-middleware1', 'hello');
+export function middleware(request: NextRequest) {
+  // Clone the request headers and set a new header `x-hello-from-middleware1`
+  // const cookieStore = cookies();
+  // const user: any = cookieStore.get('user')?.value;
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-hello-from-middleware1', 'hello')
+  // requestHeaders.set('Authorization', `Bears ${JSON.parse(user).token}`)
 
   // You can also set request headers in NextResponse.rewrite
-  const response = NextResponse.next();
+  const response = NextResponse.next({
+    request: {
+      // New request headers
+      headers: requestHeaders,
+    },
+  })
 
- try {
-    if(token) {
-        // const {} = await verifyJWT
-    }
- } catch (error) {
-    
- }
-  return response;
+  // Set a new response header `x-hello-from-middleware2`
+  response.headers.set('x-hello-from-middleware2', 'hello')
+  return response
 }

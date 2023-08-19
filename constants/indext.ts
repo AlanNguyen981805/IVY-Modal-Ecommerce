@@ -25,7 +25,7 @@ export const MenuCustomer: IMenuHeaderRight[] = [
   {
     title: 'Quản lý đơn hàng',
     icon: BiPhoneCall,
-    link: '',
+    link: ROUTER.CUSTOMER.QUAN_LY_DON_HANG,
   },
   {
     title: 'Sổ địa chỉ',
