@@ -10,7 +10,7 @@ import icons from '@/utils/icons';
 import { ROUTER } from '@/utils/consts';
 import { tranformCurrency } from '@/utils/tranform';
 import { IProduct, IProductColor, IProductSize } from '@/types/product';
-import { useProductStore } from '@/hooks';
+import { useModalSuccessCart, useProductStore, useShowModalCart } from '@/hooks';
 import { useStoreAuth } from '@/hooks';
 import { addFavoriteProduct, deleteFavoriteProduct } from '@/services/product/product.api';
 import { Colors, Label, ModalSize } from './components';
@@ -29,6 +29,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
   const [listSizeByColor, setListSizeByColor] = useState<IProductSize[] | []>([]);
   const router = useRouter();
   const { addToCart } = useProductStore();
+  const { openModalSuccess } = useModalSuccessCart();
   const { isLogged } = useStoreAuth();
 
   const handleFavorite = async (type: 'ADD' | 'REMOVE') => {
@@ -146,6 +147,7 @@ const Product: React.FC<IProps> = ({ attributeProduct }) => {
                 sizes={listSizeByColor}
                 handleAddCard={item => {
                   colorActive && addToCart(attributeProduct, colorActive, item, 1);
+                  openModalSuccess()
                 }}
               />
             )}

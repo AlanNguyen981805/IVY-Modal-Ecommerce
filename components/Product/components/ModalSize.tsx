@@ -11,7 +11,7 @@ const ModalSize: React.FC<IProps> = ({ sizes, handleAddCard }) => {
       <ul className="gap-5">
         {sizes.map(item => (
           <li
-            className="py-3 text-xl font-semibold px-14 text-primaryDark"
+            className="py-3 text-xl font-semibold transition px-14 text-primaryDark hover:scale-125"
             key={item.size?.id}
             onClick={() => handleAddCard(item)}
           >

@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google';
 
-import { Footer, Header, Modal } from '@/components';
+import { Footer, Header, Modal, ModalNoti } from '@/components';
 
 import './globals.css';
 import Providers from '@/utils/react-query/provider';
@@ -24,6 +24,7 @@ export default function RootLayout({ children, params }: { children: React.React
           <div className="mt-24">{children}</div>
           <Footer />
           <Modal />
+          <ModalNoti />
           <Toaster />
         </Providers>
       </body>
