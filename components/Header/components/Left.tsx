@@ -10,11 +10,12 @@ interface IProps {
 }
 const HeaderLeft: React.FC<IProps> = ({ categories }) => {
   const [isShowChildCate, setIsShowChildCate] = useState(false);
-  const [subCate, setSubCate] = useState<ICategory | null>(null)
+  const [subCate, setSubCate] = useState<ICategory | null>(null);
 
   const handleMouseEnter = (item?: ICategory) => {
+    if (item && item?.children?.length <= 0) return;
     setIsShowChildCate(true);
-    item && setSubCate(item)
+    item && setSubCate(item);
   };
 
   const handleMouseLeave = () => {
@@ -35,7 +36,7 @@ const HeaderLeft: React.FC<IProps> = ({ categories }) => {
           </span>
         </>
       ))}
-      {isShowChildCate && (
+      {isShowChildCate && subCate && subCate?.children?.length > 0 && (
         <div
           className=" absolute z-20 w-full bg-white px-[23px] py-6  top-14 animate-slide-up border border-[#E7E8E9] flex "
           onMouseEnter={() => handleMouseEnter()}

@@ -18,6 +18,7 @@ export const Toggle = dynamic(() => import('./Toggle'));
 export const CustomLoading = dynamic(() => import('./Loading'));
 export const StatusPayment = dynamic(() => import('./StatusPayment'));
 export const Box = dynamic(() => import('./_share_/Box'));
+export const ModalNoti = dynamic(() => import('./_share_/ModalNoti'), { ssr: false });
 export const Sidebar = dynamic(() => import('./Sidebar'), {
   ssr: false,
 });

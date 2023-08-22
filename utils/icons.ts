@@ -9,6 +9,7 @@ import {
   BsPlus,
   BsFillCheckCircleFill,
   BsBagX,
+  BsCartCheck
 } from 'react-icons/bs';
 import { AiOutlineUser, AiOutlineHeart, AiFillStar, AiFillHeart } from 'react-icons/ai';
 import { HiOutlineShoppingBag, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
@@ -22,6 +23,7 @@ import { IoIosArrowRoundForward, IoIosArrowRoundBack } from 'react-icons/io';
 import { TfiReload, TfiEmail } from 'react-icons/tfi';
 
 const icons = {
+  BsCartCheck,
   AiFillHeart,
   BsBagX,
   BsFillCheckCircleFill,

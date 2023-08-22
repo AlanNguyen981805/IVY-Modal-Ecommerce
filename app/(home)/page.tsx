@@ -10,7 +10,7 @@ const Page = async () => {
 
   return (
     <>
-      <div className="h-[800px]">
+      <div className="h-[600px]">
         <Slider sliders={sliders} />
       </div>
       {configPage.data.data[0].page?.home &&
